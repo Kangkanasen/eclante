@@ -1,4 +1,4 @@
-<body>
+<body class="index">
     <section class="body">
         <?php
         include "components/header.php";
@@ -37,7 +37,7 @@
                     <img class="girl-face-cream" src="images/AdobeStock-07XsvRKa4G 1.png" alt=""> <!-- image number two -->
                     <div class="row2-col2">
                         <img src="images/AdobeStock-SMg6WypedA 1.png" alt=""> <!-- image number three -->
-                        <a class="shop-now" href="shop-page.php">shop now</a>
+                        <a class="shop-now" href="shop-now.php">shop now</a>
                     </div>
                 </div>
                 <h1 class="home-title">
@@ -68,14 +68,14 @@
 
                     <h1>Easy sun life</h1>
                     <p>Our sunscreen contains high-performance ingredients such as UVA and UVB filters, antioxidants and soothing ingredients that reduce the risk of free radical damage to the skin and prevent premature aging.</p>
-                    <a class="shop-now" href="">shop now</a>
+                    <a class="shop-now" href="shop-now.php">shop now</a>
 
                 </div>
                 <div class="item grid-text">
 
                     <h1>Organic skincare products</h1>
                     <p>We are convinced that natural cosmetics is not only about skin health, but also about nature. We do not use animal testing and strive to minimize our environmental footprint.</p>
-                    <a class="shop-now" href="">shop now</a>
+                    <a class="shop-now" href="shop-now.php">shop now</a>
 
                 </div>
                 <div class="item">

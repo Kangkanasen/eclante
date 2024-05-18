@@ -403,21 +403,7 @@ nav {
     border-radius: 20px;
 }
 
-.display-products .card {
-    position: relative;
-    width: 328px;
-    height: 436px;
-    text-decoration: none;
-    padding: .8em;
-    margin: 0px 20px;
-    background: #f5f5f5;
-    position: relative;
-    overflow: visible;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-}
-
-.slider-container .card-img,
-.display-products .card-img {
+.slider-container .card-img {
     background-position: center;
     background-color: #ffcaa6;
     height: 60%;
@@ -426,19 +412,16 @@ nav {
     transition: .3s ease;
 }
 
-.slider-container .card-info,
-.display-products .card-info {
+.slider-container .card-info {
     padding-top: 10%;
 }
 
-.slider-container .card-button svg,
-.display-products svg {
+.slider-container .card-button svg {
     width: 24px;
     height: 24px;
 }
 
-.slider-container .card-footer,
-.display-products .card-footer {
+.slider-container .card-footer {
     width: 96%;
     top: 360px;
     display: flex;
@@ -642,12 +625,12 @@ nav {
 .marquee-content {
     display: flex;
     width: calc(250px * 10);
-    animation: marquee 20s linear infinite; 
+    animation: marquee 20s linear infinite;
     gap: 1%;
 }
 
 .marquee-content img {
-    width: 250px; 
+    width: 250px;
     height: 100%;
     object-fit: cover;
     border-radius: 5%;
@@ -663,6 +646,7 @@ nav {
     0% {
         transform: translateX(0);
     }
+
     100% {
         transform: translateX(-50%);
     }
@@ -671,23 +655,26 @@ nav {
 .marquee-content::before {
     content: attr(data-content);
     display: flex;
-    width: calc(250px * 8); 
+    width: calc(250px * 8);
 }
+
 /* footer */
-footer{
+footer {
     display: inline-flex;
     width: 100%;
     padding: 35px 196px 33px 215.449px;
     justify-content: space-evenly;
     align-items: center;
     background: #FFF;
-  }
-  .links{
+}
+
+.links {
     display: flex;
     flex-direction: column;
     gap: 21px;
-  }
-  .links a{
+}
+
+.links a {
     text-decoration: none;
     color: #000;
     font-family: "Open Sauce Sans";
@@ -695,15 +682,119 @@ footer{
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-  }
-  footer i{
+}
+
+footer i {
     display: flex;
     gap: 30px;
-  }
-  footer .socials{
+}
+
+footer .socials {
     margin-left: 50%;
     gap: 42px;
-  }
+}
+
+/* main index page or landing page styling ends here */
+/* shop now page styling starts from here */
+
+.banner #carousel-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.banner #image-carousel {
+    display: flex;
+    transition: transform 0.8s ease-in-out;
+}
+
+.banner .carousel-item {
+    min-width: 100%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.banner img {
+    width: 100%;
+    height: auto;
+}
+
+.banner .carousel-text {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-40%, -40%);
+    text-align: start;
+    margin-top: 100px;
+}
+
+.banner .carousel-text h1 {
+    color: #FFF;
+    font-family: "Open Sauce Sans";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.banner .carousel-text p {
+    color: #FFF;
+    font-family: "Open Sauce Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+.banner #dot-container {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+}
+
+.banner .dot {
+    width: 20px;
+    height: 20px;
+    background: none;
+    border: #FFF 1px solid;
+    border-radius: 50%;
+    margin: 15px 10px;
+    cursor: pointer;
+}
+
+.banner .dot.active {
+    background-color: #fff;
+}
+
+.all-products h1 {
+    color: #000;
+    font-family: "Open Sauce Sans";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-right: 500px;
+}
+
+.all-products .header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1% 4%;
+}
+
+.products .card {
+    width: 80%;
+}
+
+.products {
+    display: flex;
+    justify-content: space-evenly;
+}
 
 
 
@@ -874,10 +965,12 @@ footer{
         width: 14px;
         height: 14px;
     }
+
     .hero .box {
         padding: 4px;
     }
-    .hero .logo{
+
+    .hero .logo {
         font-size: 20px;
         padding-left: 20px;
     }
@@ -1056,7 +1149,7 @@ footer{
         gap: 8px;
     }
 
-    .grid-row3 .girl-applying-cream{
+    .grid-row3 .girl-applying-cream {
         object-fit: cover;
         height: 100%;
         width: 35%;
@@ -1073,7 +1166,8 @@ footer{
         padding: 16px 11px;
         font-size: 8px;
     }
-    .grid-text img{
+
+    .grid-text img {
         width: 40%;
         height: 30%;
     }
@@ -1098,45 +1192,97 @@ footer{
     .ig {
         margin: 20px 0;
     }
+
     .ig h1 {
         font-size: 0.8em;
         margin-bottom: 10px;
     }
-    .ig a{
+
+    .ig a {
         font-size: 0.5rem;
     }
+
     .marquee-content {
         width: calc(100px * 10);
 
     }
-    
+
     .marquee-content img {
-        width: 100px; 
+        width: 100px;
         height: 100%;
         object-fit: cover;
         border-radius: 5%;
     }
-    footer{
+
+    footer {
         padding: 25px 35px 15px 15px;
     }
-    .links a{
+
+    .links a {
         font-size: 8px;
     }
-    .links{
+
+    .links {
         gap: 8px;
     }
-    footer i{
+
+    footer i {
         gap: 10px;
-      }
-      footer .socials{
+    }
+
+    footer .socials {
         margin-left: 16%;
         gap: 2px;
-      }
-      i svg{
+    }
+
+    i svg {
         width: 12px;
-      }
-      .socials .svg{
+    }
+
+    .socials .svg {
         width: 68px;
-      }
+    }
+
+    /* shop-now page styling for mobile screen */
+    .banner .dot {
+        width: 10px;
+        height: 10px;
+        margin: 10px 5px 0px 5px;
+    }
+
+    .all-products h1 {
+        font-size: 12px;
+        margin-right: 50px;
+    }
+
+    .all-products .header {
+        padding: 1% 4%;
+    }
+
+    .products .card {
+        width: 95%;
+    }
+
+    .products {
+        justify-content: space-between !important;
+    }
+
+    .banner .carousel-text {
+        gap: 5px;
+        margin-top: 10px;
+
+    }
+
+    .banner .carousel-text h1 {
+        font-size: 14px !important;
+    }
+
+    .banner .carousel-text p {
+        font-size: 7px;
+    }
+
+    .banner .carousel-text span {
+        display: none;
+    }
 
 }
