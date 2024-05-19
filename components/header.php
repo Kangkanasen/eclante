@@ -22,7 +22,7 @@
     <div class="pages">
 
       <a href="#">About</a>
-      <a href="shop-page.php">Products</a>
+      <a href="shop-now.php">Products</a>
       <a href="#">Account</a>
 
     </div>

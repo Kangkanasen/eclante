@@ -796,6 +796,300 @@ footer .socials {
     justify-content: space-evenly;
 }
 
+.product-page {
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    nav .cart {
+        margin-right: 20px;
+    }
+
+    .eclante-logo {
+        margin-right: 300px;
+    }
+
+    .product-page-body {
+        margin: 0;
+        padding: 2% 1%;
+    }
+
+    .label {
+        display: flex;
+        justify-content: flex-start;
+        font-family: Open Sauce Sans;
+        font-size: 14px;
+        font-weight: 300;
+        font-stretch: normal;
+        font-style: normal;
+        text-align: left;
+        gap: 10px;
+        margin-bottom: 25px;
+    }
+
+    .label a {
+        text-decoration: none;
+        letter-spacing: -0.8px;
+        color: #404040;
+    }
+
+    .product {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .img-con {
+        width: 75%;
+        height: 100%;
+        margin: 0 33px 5px 0;
+
+    }
+
+    .img-con img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    .product-name {
+        width: 302px;
+        height: 40px;
+        flex-grow: 0;
+        font-family: Open Sauce Sans;
+        font-size: 32px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: -1.6px;
+        text-align: left;
+        color: #181717;
+        margin-top: 50px;
+    }
+
+    .quantity {
+        width: 121px;
+        height: 30px;
+        flex-grow: 0;
+        font-family: Open Sans;
+        font-size: 18px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.67;
+        letter-spacing: -0.8px;
+        text-align: left;
+        color: #707378;
+    }
+
+    .ratings {
+        display: flex;
+        gap: 5px;
+        margin: 20px 0px;
+        color: #707378;
+        font-family: Open Sans;
+    }
+
+    .checked {
+        color: coral;
+    }
+
+    .price {
+        display: flex;
+        margin-bottom: 21px;
+        gap: 13px;
+    }
+
+    .recent-price {
+        font-family: Open SauceSans;
+        font-size: 18px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1;
+        letter-spacing: -0.18px;
+        text-align: left;
+        color: #f38ba0;
+    }
+
+    .mrp {
+        font-family: Open SauceSans;
+        font-size: 18px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1;
+        letter-spacing: -0.18px;
+        text-align: left;
+        color: #5a5a5a;
+        text-decoration: line-through;
+    }
+
+    .off {
+        font-size: 14px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.29;
+        letter-spacing: -0.14px;
+        text-align: left;
+        color: #fffdf4;
+        width: 74px;
+        height: 20px;
+        flex-grow: 0;
+        padding: 1px 9px 1px 10px;
+        background-color: #ffbcbc;
+        padding: 1px 10px 1px 10px;
+    }
+
+    .add-to-cart-opt {
+        display: flex;
+        gap: 13px;
+        margin-bottom: 30px;
+    }
+
+    .add-to-cart {
+        display: flex;
+        justify-content: center;
+        width: 22%;
+        height: 38px;
+        flex-grow: 0;
+        padding: 8px 7px 8px 11px;
+        border: solid 1px #ffbcbc;
+    }
+
+    .add-to-cart input {
+        text-align: center;
+    }
+
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0 !important;
+        padding: 0;
+    }
+
+    .add-to-cart button {
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .num-of-product {
+        background: none;
+        border: none;
+    }
+
+    .cart-btn {
+        display: flex;
+        width: 290px;
+        height: 38px;
+        flex-grow: 0;
+        padding: 7px 65px;
+        border: solid 1px #ffbcbc;
+        background-color: transparent;
+        cursor: pointer;
+        font: Open Sauce Sans;
+        font-size: 18px;
+        font-weight: 500;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .options4 ul {
+        display: flex;
+        gap: 20px;
+        list-style-type: none;
+    }
+
+    .options4 a {
+        text-decoration: none;
+        font-family: Open Sauce Sans;
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.71;
+        letter-spacing: -0.8px;
+        text-align: left;
+        color: #808191;
+    }
+
+    .options4 a:hover {
+        color: #444444;
+    }
+
+    .other-img-anchor {
+        width: 11%;
+        display: flex;
+        flex-direction: column;
+        gap: 2%;
+    }
+
+    .other-img-anchor img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        flex-grow: 0;
+        border-radius: 5px;
+    }
+
+    .other-info {
+        display: flex;
+        gap: 20px;
+        margin-top: 20%;
+    }
+
+    .other-info a {
+        text-decoration: underline;
+        color: #444444;
+        font-family: Open Sauce Sans;
+        font-size: 14px;
+        font-weight: normal;
+    }
+
+    .related-products {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 140px;
+        font-family: Open Sauce Sans;
+        font-size: 22px;
+        color: #444;
+    }
+
+    #loadedSection {
+        width: 480px;
+        margin-top: 20px;
+        font-family: Open Sauce Sans;
+        font-size: 14px;
+        color: #444;
+    }
+
+    .related-products {
+        display: flex;
+        flex-direction: column;
+        gap: 42px;
+    }
+
+    .all-imgs {
+        display: flex;
+        width: 60%;
+        gap: 3%;
+    }
+    .slider-container {
+        padding-bottom: 70px;
+    }
+
+    .dot{
+        margin: 0 5px;
+    }
+
+}
+
 
 
 
@@ -912,8 +1206,8 @@ footer .socials {
     }
 
     .eclante-logo {
-        margin-right: 0px;
-        margin-left: 10px;
+        margin-right: 0px !important;
+        margin-left: 10px !important;
     }
 
     svg {
@@ -921,7 +1215,7 @@ footer .socials {
     }
 
     .cart {
-        margin-right: 5px;
+        margin-right: 5px !important;
     }
 
     /* hero section */
@@ -1283,6 +1577,117 @@ footer .socials {
 
     .banner .carousel-text span {
         display: none;
+    }
+
+    /* product page */
+    .label {
+        font-size: 8px !important;
+    }
+
+    .product {
+        flex-direction: column !important;
+    }
+
+    .product-details br {
+        display: none;
+    }
+
+    .all-imgs {
+        width: 100% !important;
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 3%;
+    }
+
+    .other-img-anchor {
+        width: 80% !important;
+        flex-direction: row !important;
+    }
+
+    .image-link {
+        width: 22%;
+    }
+
+    .product-name {
+        font-size: 18px !important;
+    }
+
+    .product-details .ratings {
+        margin: 5px 0px;
+    }
+
+    .price {
+        display: flex;
+        align-items: center;
+    }
+
+    .product-details .quantity,
+    .product-details .reviews-num {
+        font-size: 10px;
+    }
+
+    .product-details .recent-price,
+    .product-details .mrp,
+    .product-details .off {
+        font-size: 12px;
+    }
+
+    .product-details .off {
+        width: 54px;
+        height: 20px;
+        padding: 5px !important;
+    }
+
+    .img-con {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    .options4 {
+        width: 100% !important;
+    }
+
+    #loadedSection {
+        width: 100% !important;
+        font-size: 10px !important;
+    }
+
+    .options4 a {
+        font-size: 12px !important;
+    }
+
+    .options4 ul {
+        gap: 5% !important;
+    }
+
+    .other-info {
+        margin-top: 10% !important;
+    }
+
+    .other-info a {
+        font-size: 10px !important;
+
+    }
+
+    .product-page .cart-btn {
+        padding: 0 !important;
+        width: 58% !important;
+        font-size: 1rem !important;
+    }
+
+    .product-page .related-products {
+        margin-top: 10% !important;
+        gap: 20px !important;
+    }
+
+    .related-products h1 {
+        font-size: 1rem !important;
+    }
+    .add-to-cart{
+        width: 30% !important;
+    }
+    .slider-container {
+        padding-bottom: 30px !important;
     }
 
 }

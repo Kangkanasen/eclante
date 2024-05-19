@@ -26,7 +26,7 @@ while ($row = $result->fetch_assoc()) {
         // Display product information within the card structure
         echo '<div class="slide">';
         echo '<div class="card">';
-        echo '<a href="product-info.php?id=' . $row['id'] . '" class="product-link">'; // Link to product page
+        echo '<a href="product-page.php?id=' . $row['id'] . '" class="product-link">'; // Link to product page
         echo '<div class="card-img" style="background-image: url(\'images/' . $row['image_url'] . '\'); background-size: cover;"></div>';
         echo '<div class="card-info">';
         echo '<p class="text-title">' . $row['name'] . '</p>';
