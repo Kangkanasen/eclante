@@ -971,9 +971,7 @@ footer .socials {
         padding: 0;
     }
 
-    .add-to-cart button {
-        background: none;
-        border: none;
+    .add-to-cart span {
         cursor: pointer;
     }
 
@@ -1031,8 +1029,8 @@ footer .socials {
 
     .other-img-anchor img {
         width: 100%;
-        height: 100%;
-        object-fit: contain;
+        height: 90px;
+        object-fit: cover;
         flex-grow: 0;
         border-radius: 5px;
     }
@@ -1080,14 +1078,73 @@ footer .socials {
         width: 60%;
         gap: 3%;
     }
+
     .slider-container {
         padding-bottom: 70px;
     }
 
-    .dot{
+    .dot {
         margin: 0 5px;
     }
 
+}
+
+/* signup and signin page styling */
+
+.login {
+    .create {
+        font-family: 'Poppins';
+        font-size: 32px;
+        margin-bottom: 40px;
+        text-align: left;
+        color: #000;
+    }
+
+    .signup-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .label {
+        font-family: Open Sauce Sans;
+        font-size: 14px;
+        font-weight: 500;
+        text-align: left;
+        color: #000;
+        margin-bottom: 10px;
+    }
+
+    .signup-form input {
+        padding: 10px 0 10px 10px;
+        border-radius: 2px;
+        border: solid 1px #d9d9d9;
+        background-color: transparent;
+        width: 100%;
+        height: 32px;
+        margin-bottom: 20px;
+    }
+
+    .signup-form button {
+        width: 404px;
+        height: 32px;
+        padding: 10px 0 10px 10px;
+        border: none;
+        border-radius: 2px;
+        color: white;
+        background-color: #ffbcbc;
+    }
+
+    .signup-form p {
+        font-size: 11px;
+        font-weight: 400;
+        font-family: Open Sauce Sans;
+    }
+    .btn-bottom {
+        font-family: Open Sauce Sans;
+        font-size: 14px;
+        font-weight: 500;
+        margin-top: 50px;
+    }
 }
 
 
@@ -1600,7 +1657,7 @@ footer .socials {
     }
 
     .other-img-anchor {
-        width: 80% !important;
+        width: 100% !important;
         flex-direction: row !important;
     }
 
@@ -1643,6 +1700,11 @@ footer .socials {
         margin: 0 !important;
     }
 
+    .other-img-anchor img {
+        width: 100% !important;
+        height: 60px !important;
+    }
+
     .options4 {
         width: 100% !important;
     }
@@ -1683,11 +1745,64 @@ footer .socials {
     .related-products h1 {
         font-size: 1rem !important;
     }
-    .add-to-cart{
+
+    .add-to-cart {
         width: 30% !important;
     }
+
     .slider-container {
         padding-bottom: 30px !important;
     }
+
+    .login {
+        .create {
+            width: 100%;
+            font-size: 18px;
+            margin-bottom: 40px;
+            text-align: left;
+            color: #000;
+        }
+
+        .signup-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .label {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .signup-form input {
+            padding: 10px 0 10px 10px;
+            width: 280px;
+            height: 32px;
+            margin-bottom: 10px;
+        }
+
+        .signup-form button {
+            width: 280px;
+            height: 32px;
+            padding: 10px 0 10px 10px;
+            border: none;
+            border-radius: 2px;
+            color: white;
+            background-color: #ffbcbc;
+        }
+
+        .signup-form p {
+            font-size: 8px;
+            font-weight: 400;
+            font-family: Open Sauce Sans;
+        }
+
+        .btn-bottom {
+            font-family: Open Sauce Sans;
+            font-size: 10px;
+            font-weight: 500;
+            margin-top: 50px;
+        }
+    }
+
 
 }
