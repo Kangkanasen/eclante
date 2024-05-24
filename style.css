@@ -3,6 +3,11 @@
     padding: 0;
 }
 
+@font-face {
+    font-family: Inter;
+    src: url(fonts/inter/Inter-Regular.ttf);
+}
+
 .body {
     background: var(--Eclante-peach, #FFFDF4);
     padding: 3% 8%;
@@ -1147,6 +1152,459 @@ footer .socials {
     }
 }
 
+/* cart and checkout page styling */
+
+.cart-page{
+        width: 100%;
+        display: flex !important;
+        background-color: white !important;
+     *{
+        padding: 0;
+        margin: 0;
+     }   
+    nav{
+        display: flex;
+        justify-content: space-between;
+        background-color: white;
+        padding: 1% 10%;
+        position: absolute;
+        z-index: 2;
+        width: 100%;
+        border-bottom: solid 1px #dedede;
+    }
+    /* Hide the scrollbar */
+    .checkout::-webkit-scrollbar,.cart::-webkit-scrollbar {
+        width: 0;
+        display: none;
+    }
+    .checkout{
+        /* overflow-y: auto; Enable vertical scrolling */
+        display: flex;
+        flex-direction: column;
+        padding: 5% 0% 5% 3%;
+        align-items: center;
+        width: 55%;
+    }
+    .checkout p{
+        font-family: Segoe UI;
+        font-size: 14px;
+        color: #707070;
+    }
+    .quickpay{
+        display: flex;
+        justify-content: center;
+        width: 90%;
+        padding: 2%;
+        gap: 2%;
+    }
+    .quickpay button{
+        width: 22%;
+        background: none;
+        border: none;
+    }
+    .quickpay img{
+        object-fit: cover;
+        width: 100%;
+    }
+    .or{
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        padding-top: 10px;
+    }
+    .or p{
+        padding-top: 0 !important;
+    }
+    .or hr{
+        transform: rotate(90deg);
+    }
+    .info{
+        display: flex;
+        height: 100vh;
+        width: 100%;
+        flex-direction: column;
+    }
+    .input-info {
+        width: 90%;
+        height: 60px !important;
+        border-radius: 5px;
+        border: solid 1px #dedede;
+        margin-top: 14px;
+        padding-left: 1%;
+    }
+    .smallinput{
+        height: 60px;
+        width: 33%;
+        padding: 0% 1.5%;
+        border-radius: 5px;
+        border: solid 1px #dedede;
+        margin-top: 14px;
+        font-family: Segoe UI;
+        font-size: 15px;
+    }
+    option{
+        padding: 5px;
+        font-family: Segoe UI;
+        font-size: 18px;
+    }
+    .label{
+        font-family: Segoe UI;
+        font-size: 21px;
+        font-weight: 600;
+        text-align: left;
+        color: #000;
+        margin-top: 32px;
+    }
+    .pay{
+        width: 90%;
+        border-radius: 5px;
+        border: solid 1px #dedede;
+    }
+    .radioinput{
+        display: flex;
+        align-items: center;
+        gap: 1%;
+        height: 60px;
+        padding: 10px;
+        border-bottom: solid 1px #dedede;
+    }
+    .radioinput.checked {
+        background-color: #f0f5ff;
+        border: 1px #1773b0 solid;
+        border-bottom: none;
+        border-radius: 5px 5px 0px 0px;
+        
+    }
+    #creditCardDetails{
+        height: auto;
+        padding: 3%;
+        border: solid 1px #dedede;
+        background-color: rgba(0, 0, 0, 0.04);
+        gap: 28%;
+    }
+    #creditCardDetails input{
+        height: 48px;
+        width: 100%;
+        margin-bottom: 5%;
+        border-radius: 5px;
+        border: solid 1px #dedede;
+        background-color: white;
+    }
+    .check{
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    .check input{
+        height: 3% !important;
+        width: 3% !important;
+        margin-bottom: 0%;
+        margin-right: 2%;
+    }
+    .payment-details{
+        border-bottom: 1px solid #dedede;
+    }
+    #paypalDetails{
+        height: auto;
+        width: 100%;
+        padding-bottom: 3%;
+    }
+    #paypalDetails input{
+        margin: 3% 5%;
+        height: 48px;
+        width: 70%;
+        border-radius: 5px;
+        border: solid 1px #dedede;
+        background-color: white;
+    }
+    #pay{
+        height: 40px;
+       width: 90%;
+       border-radius: 5px;
+        background-color: #ffbcbc;
+        border: none;
+        margin-bottom: 2%;
+        margin: 0% 5%;
+        color: white;
+        font-family: Segoe UI;
+        font-size: 19px;
+        cursor: pointer;
+    }
+    .verify{
+        height: 48px;
+        width: 14%;
+        color: #000;
+        font-family: Segoe UI;
+        font-size: 16px;
+        background-color: white;
+        border: 1px solid #ffbcbc;
+        border-radius: 5%;
+    }
+    #cashOnDeliveryDetails{
+        height: auto;
+        width: 100%;
+        padding: 3%;
+    }
+    #cashOnDeliveryDetails p{
+        margin: 2% 35%;
+    }
+    .radioinput img{
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .cart{
+        
+        /* overflow-y: auto; Enable vertical scrolling */
+        width: 45%;
+        height: auto;
+        background-color: #f5f5f5;
+        z-index: 1;
+        padding: 1%;
+        padding: 5% 5% 5% 1%;
+    }
+    .product-display{
+        display: flex;
+        align-items: center;
+        font-family: Segoe UI;
+        width: 90%;
+        color: #000;
+    }
+    .product-display h2,.final-amount-row h2{
+        font-size: 14px ;
+        text-align: left;
+        font-weight: 400;
+    }
+    .product-display-img{
+        width: 20%;
+        margin: 11px 25px 11px 11px;
+        
+    }
+    .product-display-img img{
+        border: solid 1px #d6d6d6;
+        border-radius: 5%;
+        object-fit: cover;
+        width: 100%;
+    }
+    .quantity{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px #d6d6d6 solid;
+        width: 78px;
+        padding: 2%;
+        background-color: white;
+    }
+    .quantity-input{
+        display: flex;
+        text-align: center;
+        background: none;
+        border: none;
+        width: 50px;
+    }
+    .minus,.plus{
+        cursor: pointer;
+        padding: 2px;
+    }
+    .final-amount{
+        display: flex;
+        width: 90%;
+        flex-direction: column;
+        margin: 11px 25px 11px 11px;
+    }
+    .final-amount-row{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: Segoe UI;
+        font-weight: normal;
+        color: #000;
+    }
+    .final-amount-row span{
+        font-size: 19px;
+        font-weight: 700;
+    }
+
+    .remove-btn{
+        margin-left: 15px ;
+        font-size: 12px;
+        color: #5a5a5a;
+        cursor: pointer;
+    }
+
+
+}
+
+/* orders page styling */
+.myorders{
+    display: flex;
+            background-color: #fffdf4;
+            padding: 8%; 
+    .sidenav {
+        width: 20%;
+        height: 90%;
+        border: solid 1px #e6e5e3;
+    }
+
+    .sidenav h1 {
+        margin: 37px 0px 5px 18px;
+        font-size: 24px;
+        font-family: Inter;
+        font-weight: normal;
+    }
+
+    .sidenav h2 {
+        margin-bottom: 35px;
+    }
+
+    h2 {
+        margin-left: 18px;
+        font-size: 16px;
+        font-family: Inter;
+        font-weight: normal;
+    }
+
+    .box a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: #000;
+        font-family: Inter;
+        font-size: 16px;
+        gap: 8px;
+
+    }
+
+    .box {
+        display: flex;
+        align-items: center;
+        padding: 16px 20px;
+        border-bottom: solid 1px #e6e5e3;
+
+
+    }
+
+    .box span {
+        color: red;
+    }
+
+    .last {
+        border: none;
+    }
+
+    .clicked {
+        border-right: 2px solid #f38ba0;
+        background-color: #f2f2f2;
+    }
+
+    section {
+        width: 50%;
+        padding-left: 3%;
+    }
+
+    .ordered-products{
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 10px;
+    }
+
+    .orders h2 {
+        margin-left: 0;
+    }
+
+    label {
+        font-family: Inter;
+        font-size: 16px;
+    }
+
+    hr {
+        border: 1px solid #e6e5e3;
+
+    }
+
+    h3 {
+        font-family: Inter;
+        font-size: 12px;
+        font-weight: normal;
+    }
+
+    .an-order {
+        display: flex;
+        flex-direction: column;
+        border-radius: 8px;
+        border: solid 1px #e6e5e3;
+        padding: 4%;
+    }
+
+    .details {
+        display: flex;
+        gap: 12%;
+    }
+
+    .delivery-date {
+        font-family: Inter;
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+    .display-product {
+        display: flex;
+        gap: 5%;
+    }
+
+    .col1 {
+        width: 20%;
+    }
+
+    .col1 img {
+        object-fit: cover;
+        width: 100%;
+        border-radius: 5%;
+    }
+
+    .quantity{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        z-index: 1;
+        height: 20px;
+        width: 20px;
+        background-color:#ffbcbc;
+        border-radius: 50%;
+    }
+
+    .col2 {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+
+    .name {
+        font-family: Open Sauce Sans;
+        font-size: 16px;
+
+    }
+
+    .col2 a {
+        width: 30%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 5px 4px;
+        border-radius: 8px;
+        background-color: #ffbcbc;
+        flex-grow: 0;
+        font-family: Segoe UI;
+        font-size: 14px;
+        padding: 2% 0%;
+        font-weight: normal;
+        color: #000;
+        text-decoration: none;
+    }
+}
 
 
 
@@ -1803,6 +2261,53 @@ footer .socials {
             margin-top: 50px;
         }
     }
+
+    /* cart checkout page */
+
+    .cart-page{
+        width: 100%;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .checkout , .cart{
+        width: 100% !important;
+        padding: 5% !important;
+    }
+
+    .express-checkout p{
+        padding-top: 30px;
+        font-size: 10px !important;
+    }
+    .checkout p{
+        font-size: 10px !important;
+    }
+
+    .cart-page .input-info , .cart-page .smallinput, .radioinput{
+        height: 40px !important;
+        font-size: 12px;
+    }
+
+    .cart-page .label{
+        margin-top: 10px;
+    }
+
+    #pay{
+        font-size: 16px !important;
+    }
+
+    .final-amount h2{
+        font-size: 12px !important;
+    }
+
+    .final-amount span{
+        font-size: 12px !important;
+    }
+
+    .product-display h2{
+        font-size: 12px !important;
+    }
+    
 
 
 }

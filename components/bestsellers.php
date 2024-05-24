@@ -77,7 +77,7 @@
         function addToCart(productId, quantity, price) {
             $.ajax({
                 type: "POST",
-                url: "add_cart.php",
+                url: "add_to_cart.php",
                 data: {
                     productId: productId,
                     productQuantity: quantity,
