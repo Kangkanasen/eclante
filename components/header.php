@@ -23,7 +23,7 @@
 
       <a href="#">About</a>
       <a href="shop-now.php">Products</a>
-      <a href="#">Account</a>
+      <a href="myprofile.php">Account</a>
 
     </div>
 

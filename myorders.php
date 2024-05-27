@@ -1,8 +1,13 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <link rel="stylesheet" type="text/css" href="style.css?<?php echo filemtime('style.css'); ?>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body class="body">
@@ -18,7 +23,7 @@
 
             <div class="pages">
                 <div class="box">
-                    <a href="#">
+                    <a href="myprofile.php">
                         <img src="images/btn1.png" alt="Image 1">
                         My profile
                     </a>
@@ -54,7 +59,7 @@
                     </a>
                 </div>
                 <div class="box last">
-                    <a href="#">
+                    <a href="logout.php">
                         <img src="images/btn7.png" alt="Image 7">
                         <span>Logout</span>
                     </a>
@@ -62,23 +67,37 @@
             </div>
         </div>
         <section class="orders">
-
-
-
             <h2>Your Orders</h2>
             <br>
             <hr><br>
             <div class="ordered-products">
                 <?php
+                
+
+                // Check if user is logged in
+                if (!isset($_SESSION['user_id'])) {
+                    header('Location: login.php');
+                    exit();
+                }
 
                 require "components/connection.php";
-                $sql = "SELECT * FROM `orders`";
-                $result = mysqli_query($conn, $sql);
+
+                $user_id = $_SESSION['user_id'];
+
+                // Fetch orders for the logged-in user
+                $sql = "SELECT * FROM `orders` WHERE user_id = ?";
+                $stmt = $conn->prepare($sql);
+                if ($stmt === false) {
+                    die('Prepare failed: ' . htmlspecialchars($conn->error));
+                }
+                $stmt->bind_param("i", $user_id);
+                $stmt->execute();
+                $result = $stmt->get_result();
 
                 // Check if any orders are found
-                if (mysqli_num_rows($result) > 0) {
+                if ($result->num_rows > 0) {
                     // Loop through each order
-                    while ($order = mysqli_fetch_assoc($result)) {
+                    while ($order = $result->fetch_assoc()) {
                         echo "<div class='an-order'>";
                         echo "<div class='details'>";
                         echo "<div class='info'>";
@@ -89,7 +108,7 @@
                         echo "<div class='info'>";
                         echo "<h3>TOTAL</h3>";
                         echo "<br>";
-                        echo "<h3>$" . $order['total'] . "</h3>"; // Assuming 'total' is the column storing order total
+                        echo "<h3>₹" . $order['total'] . "</h3>"; // Assuming 'total' is the column storing order total
                         echo "</div>";
                         echo "<div class='info'>";
                         echo "<h3>SHIP TO</h3>";
@@ -105,18 +124,29 @@
                         echo "<br><br>";
                         echo "<div class='delivery-date'>";
                         echo "Estimate Delivery by " . date('m/d/Y', strtotime('+3 days', strtotime($order['created_at']))); // Assuming delivery takes 3 days
+                        // Display the download button for each order
+                        echo "<form action='invoice.php' method='post'>";
+                        echo "<input type='hidden' name='order_id' value='" . $order['id'] . "'>";
+                        echo "<button style='background-color:transparent; padding:8px; font-family: Inter; border-radius:6px; border:1px solid #ffbcbc; cursor:pointer;' type='submit' name='download_invoice'><i class='fa-solid fa-floppy-disk' style='color: #ffbcbc; margin-right:8px;'></i> Invoice</button>";
+                        echo "</form>";
                         echo "</div>";
                         echo "<br><br>";
 
                         // Fetch ordered products data
                         $orderId = $order['id'];
-                        $orderedProductsSql = "SELECT op.*, p.name AS product_name, p.image_url FROM `ordered-products` AS op JOIN `products` AS p ON op.product_id = p.id WHERE op.order_id = '$orderId'";
-                        $orderedProductsResult = mysqli_query($conn, $orderedProductsSql);
+                        $orderedProductsSql = "SELECT op.*, p.name AS product_name, p.image_url FROM `ordered-products` AS op JOIN `products` AS p ON op.product_id = p.id WHERE op.order_id = ?";
+                        $stmtProducts = $conn->prepare($orderedProductsSql);
+                        if ($stmtProducts === false) {
+                            die('Prepare failed: ' . htmlspecialchars($conn->error));
+                        }
+                        $stmtProducts->bind_param("i", $orderId);
+                        $stmtProducts->execute();
+                        $orderedProductsResult = $stmtProducts->get_result();
 
                         // Check if any products are found for the current order
-                        if (mysqli_num_rows($orderedProductsResult) > 0) {
+                        if ($orderedProductsResult->num_rows > 0) {
                             // Loop through each ordered product
-                            while ($product = mysqli_fetch_assoc($orderedProductsResult)) {
+                            while ($product = $orderedProductsResult->fetch_assoc()) {
                                 echo "<div class='display-product'>";
                                 echo "<div class='quantity'>" . $product['quantity'] . "</div>"; // Display quantity
                                 echo "<div class='col1'><img src='images/" . $product['image_url'] . "' alt='an image of your order'></div>";
@@ -133,12 +163,13 @@
                     // Display message if no orders are found
                     echo "No orders found.";
                 }
+
+                $conn->close();
                 ?>
+
             </div>
         </section>
     </div>
-
 </body>
-<!-- <?php
-// include "components/footer.php";
-?> -->
+
+</html>

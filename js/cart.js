@@ -1,4 +1,4 @@
-        
+
 function getCityName() {
     const zipCode = document.getElementById('zipCodeInput').value.trim();
     const apiUrl = `https://api.postalpincode.in/pincode/${zipCode}`;
@@ -31,7 +31,7 @@ function getCityName() {
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
             // Handle error if necessary
-        });
+    });
 }
 
 
@@ -39,9 +39,9 @@ function getCityName() {
 
 // quantity
 
-$(document).ready(function() {
+$(document).ready(function () {
     // Function to increase quantity
-    $(document).on('click', '.plus', function(event) {
+    $(document).on('click', '.plus', function (event) {
         event.preventDefault();
         var productId = $(this).data('product-id');
         var quantityInput = $('#quantity-form-' + productId + ' .quantity-input');
@@ -51,7 +51,7 @@ $(document).ready(function() {
     });
 
     // Function to decrease quantity
-    $(document).on('click', '.minus', function(event) {
+    $(document).on('click', '.minus', function (event) {
         event.preventDefault();
         var productId = $(this).data('product-id');
         var quantityInput = $('#quantity-form-' + productId + ' .quantity-input');
@@ -68,11 +68,11 @@ $(document).ready(function() {
             url: 'update_cart.php',
             method: 'POST',
             data: { productId: productId, quantity: quantity },
-            success: function(response) {
+            success: function (response) {
                 // Update the input value after the server response
                 $('#quantity-form-' + productId + ' .quantity-input').val(quantity);
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.error(error);
             }
         });
@@ -86,7 +86,7 @@ function removeProduct(cartItemId) {
     if (confirm("Are you sure you want to remove this product from your cart?")) {
         // Send AJAX request to remove product from cart
         var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
+        xhr.onreadystatechange = function () {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200) {
                     // Reload the page to reflect changes
@@ -107,39 +107,39 @@ function removeProduct(cartItemId) {
 
 // radio button
 
-    const paymentMethodRadios = document.querySelectorAll('input[name="paymentMethod"]');
-    const paymentDetails = document.querySelectorAll('.payment-details');
+const paymentMethodRadios = document.querySelectorAll('input[name="paymentMethod"]');
+const paymentDetails = document.querySelectorAll('.payment-details');
 
-    function togglePaymentDetails() {
-      paymentDetails.forEach(element => {
+function togglePaymentDetails() {
+    paymentDetails.forEach(element => {
         element.style.display = 'none';
-      });
-
-      const selectedPaymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-      document.getElementById(selectedPaymentMethod + 'Details').style.display = 'block';
-    }
-
-    paymentMethodRadios.forEach(radio => {
-      radio.addEventListener('change', togglePaymentDetails);
     });
 
-    
+    const selectedPaymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+    document.getElementById(selectedPaymentMethod + 'Details').style.display = 'block';
+}
+
+paymentMethodRadios.forEach(radio => {
+    radio.addEventListener('change', togglePaymentDetails);
+});
+
+
 // Get all radio buttons with the name "paymentMethod"
 const radioButtons = document.querySelectorAll('input[name="paymentMethod"]');
 
 // Add event listener to each radio button
 radioButtons.forEach(radioButton => {
-  radioButton.addEventListener('change', function() {
-    // Remove 'checked' class from all radioinput divs
-    document.querySelectorAll('.radioinput').forEach(div => {
-      div.classList.remove('checked');
-    });
+    radioButton.addEventListener('change', function () {
+        // Remove 'checked' class from all radioinput divs
+        document.querySelectorAll('.radioinput').forEach(div => {
+            div.classList.remove('checked');
+        });
 
-    // Add 'checked' class to the parent div of the selected radio button
-    this.parentElement.classList.add('checked');
-  });
+        // Add 'checked' class to the parent div of the selected radio button
+        this.parentElement.classList.add('checked');
+    });
 });
 
 
-    togglePaymentDetails(); // Show default payment details based on initial selection
+togglePaymentDetails(); // Show default payment details based on initial selection
 

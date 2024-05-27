@@ -164,11 +164,11 @@ session_start();
                             echo "<br>";
                             echo "<div style='display: flex; align-items: center;'>";
                             echo '
-                    <form class="quantity" id="quantity-form-' . $row['product_id'] . '">
+                    <div class="quantity" id="quantity-form-' . $row['product_id'] . '">
                         <span class="minus" data-product-id="' . $row['product_id'] . '">-</span>
-                        <input class="quantity-input" type="text" value="' . $row['quantity'] . '" data-product-id="' . $row['product_id'] . '">
+                        <input a class="quantity-input" type="text" value="' . $row['quantity'] . '" data-product-id="' . $row['product_id'] . '">
                         <span class="plus" data-product-id="' . $row['product_id'] . '">+</span>
-                    </form>';
+                    </div>';
                             echo "<span class='remove-btn' onclick='removeProduct(" . $row['id'] . ")'>Remove</span>";
                             echo "</div>";
                             echo "</div>";
