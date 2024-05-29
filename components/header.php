@@ -1,3 +1,25 @@
+<?php
+
+require 'components/connection.php'; // Database connection
+
+$isLoggedIn = false;
+$username = '';
+
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+    $sql = "SELECT name FROM users_signup WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    if ($stmt === false) {
+        die('Prepare failed: ' . htmlspecialchars($conn->error));
+    }
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $stmt->bind_result($username);
+    $stmt->fetch();
+    $stmt->close();
+    $isLoggedIn = true;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +34,6 @@
   <script src="js/side-nav.js"></script>
   <!-- Include jQuery (required for Select2) -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <!-- Include Select2 JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
@@ -21,7 +42,7 @@
   <nav>
     <div class="pages">
 
-      <a href="#">About</a>
+      <a href="index.php">About</a>
       <a href="shop-now.php">Products</a>
       <a href="myprofile.php">Account</a>
 
@@ -34,18 +55,31 @@
       <span></span>
     </label>
     <!-- side navigation links go here -->
-    <ul id="menu-list">
-      <a href="index.php" style=" margin-top: 100px;">Home</a>
-      <hr>
-      <a href="#">About</a>
-      <hr>
-      <a href="shop-page.php">Products</a>
-      <hr>
-      <a href="#">Account</a>
-      <hr>
 
-      <span><a href="#">Settings</a></span>
+
+    <ul id="menu-list">
+        <h2>Hello!</h2>
+        <?php if ($isLoggedIn): ?>
+            <h3><?php echo htmlspecialchars($username); ?></h3>
+            
+            <a class="margin-top" href="index.php">About</a>
+            <hr>
+            <a href="shop-now.php">Products</a>
+            <hr>
+            <a href="myprofile.php">Account</a>
+            <hr>
+            <span><a href="logout.php">Logout</a></span>
+        <?php else: ?>
+            <a class="margin-top" href="login.php">Login/Signup</a>
+            <hr>
+            <a href="index.php">About</a>
+            <hr>
+            <a href="shop-now.php">Products</a>
+            <hr>
+        <?php endif; ?>
     </ul>
+
+
 
     <!-- eclante logo in the middle of nav-->
     <a href="index.php" class="eclante-logo">

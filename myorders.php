@@ -1,5 +1,15 @@
 <?php
 session_start();
+
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header('Location: login.php');
+    exit();
+}
+
+require "components/connection.php";
+
+$user_id = $_SESSION['user_id'];
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +51,7 @@ session_start();
                     </a>
                 </div>
                 <div class="box">
-                    <a href="#">
+                    <a href="addresses.php">
                         <img src="images/btn4.svg" alt="Image 4">
                         Addresses
                     </a>
@@ -72,17 +82,7 @@ session_start();
             <hr><br>
             <div class="ordered-products">
                 <?php
-                
 
-                // Check if user is logged in
-                if (!isset($_SESSION['user_id'])) {
-                    header('Location: login.php');
-                    exit();
-                }
-
-                require "components/connection.php";
-
-                $user_id = $_SESSION['user_id'];
 
                 // Fetch orders for the logged-in user
                 $sql = "SELECT * FROM `orders` WHERE user_id = ?";
@@ -161,7 +161,11 @@ session_start();
                     }
                 } else {
                     // Display message if no orders are found
-                    echo "No orders found.";
+                    echo "<div class='no-orders' style='width:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; margin-top:50px;'>";
+                    echo "<img src='images/paper-bag.png' alt=''>";
+                    echo "You don't have any orders yet";
+                    echo "<a class='start-shopping'; href='shop-now.php'>START SHOPPING</a>";
+                    echo "</div>";
                 }
 
                 $conn->close();

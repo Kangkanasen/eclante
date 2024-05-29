@@ -11,7 +11,8 @@ require 'components/connection.php'; // Database connection
 
 $user_id = $_SESSION['user_id'];
 $fullname = $dob = $gender = $email = $phone = '';
-$totalSpent = $numOrders = 0;
+$totalSpent = 0;
+$numOrders = 0;
 
 // Fetch total amount spent by the user
 $sqlTotalAmount = "SELECT SUM(total) AS total_spent FROM orders WHERE user_id = ?";
@@ -104,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </a>
         </div>
         <div class="box">
-          <a href="#">
+          <a href="addresses.php">
             <img src="images/btn4.svg" alt="Image 4">
             Addresses
           </a>
