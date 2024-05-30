@@ -17,14 +17,16 @@
                     <input class="checkbox" type="checkbox" style="height: 10px; width: 10px; margin-top: 2px;">
                     <p>I agree to the terms & policy</p>
                 </div>
-                <button type="submit">Signup</button>
+                <button type="submit" name="register">Signup</button>
             </form>
             <div class="btn-bottom">Already have an account? <a href="login.php">Sign In</a></div>
         </section>
     </section>
+
     <?php
     include "components/footer.php";
     ?>
+    
 </body>
 
 </html>

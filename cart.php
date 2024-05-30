@@ -206,8 +206,6 @@ session_start();
             <button id="pay" type="submit">Pay</button>
         </section>
 
-
-
     </div>
 </form>
 <?php

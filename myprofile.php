@@ -13,6 +13,7 @@ $user_id = $_SESSION['user_id'];
 $fullname = $dob = $gender = $email = $phone = '';
 $totalSpent = 0;
 $numOrders = 0;
+$numAddresses = 0;
 
 // Fetch total amount spent by the user
 $sqlTotalAmount = "SELECT SUM(total) AS total_spent FROM orders WHERE user_id = ?";
@@ -31,6 +32,15 @@ $stmtNumOrders->execute();
 $stmtNumOrders->bind_result($numOrders);
 $stmtNumOrders->fetch();
 $stmtNumOrders->close();
+
+// Fetch the number of addresses for the user
+$sqlNumAddresses = "SELECT COUNT(id) AS num_addresses FROM addresses WHERE user_id = ?";
+$stmtNumAddresses = $conn->prepare($sqlNumAddresses);
+$stmtNumAddresses->bind_param("i", $user_id);
+$stmtNumAddresses->execute();
+$stmtNumAddresses->bind_result($numAddresses);
+$stmtNumAddresses->fetch();
+$stmtNumAddresses->close();
 
 // Fetch user data from the database
 $sql = "SELECT name, dob, gender, email, phone FROM users_signup WHERE id = ?";
@@ -144,7 +154,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div class="track">
           <h2>Addresses</h2>
-          <h2>2</h2>
+          <h2><?php echo htmlspecialchars($numAddresses); ?></h2>
         </div>
       </div>
       <form action="myprofile.php" method="POST">

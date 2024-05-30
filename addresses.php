@@ -118,8 +118,8 @@ $stmt->close();
                                 <label class="container">
                                     <input type="checkbox" <?php echo $address['is_default'] ? 'checked' : ''; ?> onclick="setDefaultAddress(<?php echo $address['id']; ?>)" >
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 75 100" class="pin">
-                                        <line stroke-width="12" stroke="black" y2="100" x2="37" y1="64" x1="37"></line>
-                                        <path stroke-width="10" stroke="black" d="M16.5 36V4.5H58.5V36V53.75V54.9752L59.1862 55.9903L66.9674 67.5H8.03256L15.8138 55.9903L16.5 54.9752V53.75V36Z"></path>
+                                        <line stroke-width="6" stroke="#3a3a3a" y2="100" x2="37" y1="64" x1="37"></line>
+                                        <path stroke-width="4" stroke="#3a3a3a" d="M16.5 36V4.5H58.5V36V53.75V54.9752L59.1862 55.9903L66.9674 67.5H8.03256L15.8138 55.9903L16.5 54.9752V53.75V36Z"></path>
                                     </svg>
                                 </label>
 
