@@ -57,13 +57,13 @@ $user_id = $_SESSION['user_id'];
                     </a>
                 </div>
                 <div class="box">
-                    <a href="#">
+                    <a href="change-password.php">
                         <img src="images/btn5.svg" alt="Image 5">
                         Change password
                     </a>
                 </div>
                 <div class="box">
-                    <a href="#">
+                    <a href="faq.php">
                         <img src="images/btn6.svg" alt="Image 6">
                         FAQ
                     </a>

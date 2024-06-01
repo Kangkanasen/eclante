@@ -39,8 +39,173 @@ button:hover {
 }
 
 .cart {
-    margin-right: 20px;
+    margin: 0px 20px;
 }
+/* search option */
+
+.hidden {
+    display: none;
+}
+
+#search-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 50px 12%;
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+    transform: translateY(-100%);
+    z-index: 1000;
+}
+
+#search-bar.show {
+    display: block;
+    transform: translateY(0);
+}
+
+#search-input {
+    width: 80%;
+    padding: 20px 10px;
+    color: #000;
+    font-family: "Open Sauce Sans";
+    font-size: 18px;
+    border: none;
+    outline: none;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    margin-left: 5px;
+}
+
+#suggestions-container{
+    display: flex;
+}
+
+#suggestions {
+    display: flex;
+    max-height: 500px;
+    overflow-y: auto;
+    border-top: 1px solid #e6e5e3;
+    padding: 20px 50px 20px 250px;
+    margin-top: 30px;
+    background-color: #fff;
+}
+
+.suggestion-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+}
+
+.suggestion-item a , #static-suggestions a {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: #000;
+    width: 100%;
+}
+#static-suggestions {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: left !important;
+    border-top: 1px solid #e6e5e3;
+    padding: 20px 0px;
+    margin-top: 30px;
+    gap: 24px;
+}
+
+#static-suggestions h4{
+    color: #000;
+    font-family: "Open Sauce Sans";
+    font-size: 22px;
+    margin-top: 10px;
+}
+
+#static-suggestions ul{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    color: #000;
+    font-family: "Open Sauce Sans";
+    font-size: 18px;
+}
+
+.suggestion-img {
+    width: 250px;
+    height: 250px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.suggestion-name {
+    color: #000;
+    font-family: "Open Sauce Sans";
+    font-size: 18px;
+    padding: 8px 0;
+    flex-grow: 1;
+}
+
+.suggestion-price {
+    font-weight: bold;
+    font-family: "Open Sauce Sans";
+    font-size: 16px;
+    color: #f38ba0;
+}
+
+.suggestion-mrp{
+    font-family: "Open Sauce Sans";
+    font-size: 16px;
+    color: #5a5a5a;
+    margin-left: 8px;
+    text-decoration: line-through;
+}
+
+.suggestion-item:hover {
+    opacity: 80%;
+}
+
+#search-submit {
+    display: block;
+    width: 24%;
+    padding: 16px;
+    margin: 50px 0px 10px 0px;
+    border: 2px solid #FFBCBC;
+    text-decoration: none;
+    background-color: transparent;
+    color: #000;
+    font-family: "Open Sauce Sans";
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    font-size: 50px;
+    font-family: "Open Sauce Sans";
+    font-weight: lighter;
+    cursor: pointer;
+    position: absolute;
+    top: 50px;
+    right: 220px;
+}
+
+.result-num{
+    color: #5a5a5a;
+    font-family: "Open Sauce Sans";
+    font-size: 11px;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 50;
+}
+
+
 
 /* hide the hamburger for wide screen */
 #menu-list {
@@ -79,7 +244,7 @@ button:hover {
 .hero .card {
     position: relative;
     width: 90%;
-    height: auto;
+    height: 90%;
     background-color: transparent;
     border-radius: 30px;
     overflow: hidden;
@@ -808,6 +973,7 @@ footer .socials {
 .products {
     display: flex;
     justify-content: space-evenly;
+    padding: 50px;
 }
 
 .product-page {
@@ -1455,7 +1621,7 @@ footer .socials {
     .minus,
     .plus {
         cursor: pointer;
-        padding: 2px;
+        padding: 0px 2px;
     }
 
     .final-amount {
@@ -1758,6 +1924,20 @@ footer .socials {
         margin-top: 20px;
     }
 
+    #password-form{
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        input{
+            width: 100%;
+            border: solid 1px #e6e5e3;
+            padding:10px 5px;
+        }
+        .update-btn{
+            width: 100%;
+        }
+    }
+
 }
 
 .myaddress {
@@ -1889,16 +2069,30 @@ footer .socials {
 
     /* Floating form styles */
     .floating-form {
+        width: 55%;
+        height: auto;
         display: none;
         position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         background: white;
-        padding: 20px;
+        padding: 2%;
         border: 1px solid #ccc;
+        border-radius: 16px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         z-index: 1000;
+    }
+
+    .floating-form-content{
+        display: flex;
+        flex-direction: column;
+    }
+
+    h3{
+        font-family: Inter;
+        font-size: 24px;
+        font-weight: 300;
     }
 
     .floating-form.active {
@@ -1954,7 +2148,7 @@ footer .socials {
         border-bottom: solid 1px #e6e5e3;
         padding: 18px 0px;
     }
-    .modal-button {
+    .modal-button , .newaddress.confirm , .newaddress.cancel {
         font-family: Segoe UI;
         font-size: 18px;
         padding: 12px 24px;
@@ -1962,22 +2156,61 @@ footer .socials {
         cursor: pointer;
         border-radius: 5px;
     }
-    .modal-button.confirm {
+    .modal-button.confirm , .newaddress.confirm {
         background-color: #f38ba0;
         color: white;
     }
-    .modal-button.cancel {
+    .modal-button.cancel , .newaddress.cancel {
         background-color: transparent;
         border: solid 1px #e6e5e3;
         color: black;
     }
     
-    .modal-content .btn{
+     .btn{
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 18px 0px;
     }
+
+    /* input styling */
+
+    .input-info {
+        width: 100%;
+        height: 50px !important;
+        border-radius: 5px;
+        border: solid 1px #dedede;
+        margin-top: 14px;
+        padding-left: 1%;
+    }
+
+    .smallinput {
+        height: 50px;
+        width: 100%;
+        padding: 0% 1.5%;
+        border-radius: 5px;
+        border: solid 1px #dedede;
+        margin-top: 14px;
+        font-family: Segoe UI;
+        font-size: 15px;
+    }
+
+    option {
+        padding: 5px;
+        font-family: Segoe UI;
+        font-size: 18px;
+    }
+
+    .label {
+        font-family: Segoe UI;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: left;
+        color: #000;
+        margin-top: 32px;
+    }
+
+
 
     /* checkbox */
     .container{

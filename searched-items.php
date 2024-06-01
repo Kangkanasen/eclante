@@ -1,25 +1,28 @@
 <?php
 include "components/connection.php";
 
-
-// Fetch products from the database
-$sql = "SELECT * FROM products";
+// Fetch products from the database based on the search term
+$searchTerm = isset($_GET['q']) ? $_GET['q'] : '';
+$sql = "SELECT * FROM products WHERE name LIKE '%" . $conn->real_escape_string($searchTerm) . "%'";
 $result = $conn->query($sql);
 
-// Check if a search parameter is present in the URL
-$searchTerm = isset($_GET['q']) ? $_GET['q'] : '';
-// Set the number of columns and rows
-$columns = 3;
-$rows = ceil($result->num_rows / $columns);
+// Count the number of results
+$numResults = $result->num_rows;
 
-// Initialize a counter for the products
-$productCounter = 0;
+// Output the results count
 
-// Display products in a grid
-echo '<div style="display: grid; grid-template-columns: repeat(' . $columns . ', 1fr); row-gap: 40px;">';
+echo '<p class="result-num">' . $numResults . ' results found for "' . htmlspecialchars($searchTerm) . '"</p>';
 
-while ($row = $result->fetch_assoc()) {
-    if (empty($searchTerm) || stripos($row['name'], $searchTerm) !== false) {
+// Check if any products were found
+if ($numResults > 0) {
+    // Set the number of columns and rows
+    $columns = 3;
+    $rows = ceil($numResults / $columns);
+
+    // Display products in a grid
+    echo '<div style="display: grid; grid-template-columns: repeat(' . $columns . ', 1fr); row-gap: 40px;">';
+
+    while ($row = $result->fetch_assoc()) {
         // Calculate actual price after applying offer
         $actual_price = $row['mrp'] - ($row['mrp'] * ($row['offer'] / 100));
 
@@ -47,34 +50,11 @@ while ($row = $result->fetch_assoc()) {
         echo '</div>';
         echo '</div>';
     }
+
+    echo '</div>';
+} else {
+    echo '<p>No products found matching your search.</p>';
 }
-
-
-echo '</div>';
 
 $conn->close();
 ?>
-<script>
-    function addToCart(productId, quantity, price) {
-        console.log("Product ID:", productId);
-        console.log("Quantity:", quantity);
-        console.log("Price:", price);
-
-        $.ajax({
-            type: "POST",
-            url: "add_to_cart.php",
-            data: {
-                productId: productId,
-                productQuantity: quantity,
-                productPrice: price
-            },
-            success: function(data) {
-                alert("Product added to cart!");
-            },
-            error: function(xhr, status, error) {
-                alert("An error occurred while adding the product to cart.");
-                console.log(xhr.responseText);
-            }
-        });
-    }
-</script>

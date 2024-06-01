@@ -30,10 +30,10 @@ session_start();
             <p class="express-checkout">express checkout</p>
 
             <div class="quickpay">
-                <button><img src="images/Link - Shop Pay.png" alt=""></button>
-                <button><img src="images/Button - Google Pay.png" alt=""></button>
-                <button><img src="images/div._Zhco (1).png" alt=""></button>
-                <button><img src="images/div._Zhco.png" alt=""></button>
+                <button name="paymentMethod" value="Shop Pay"><img src="images/Link - Shop Pay.png" alt=""></button>
+                <button name="paymentMethod" value="Google Pay"><img src="images/Button - Google Pay.png" alt=""></button>
+                <button name="paymentMethod" value="Venmo"><img src="images/div._Zhco (1).png" alt=""></button>
+                <button name="paymentMethod" value="PayPal"><img src="images/div._Zhco.png" alt=""></button>
             </div>
             <div class="or">
                 <hr>
@@ -165,9 +165,9 @@ session_start();
                             echo "<div style='display: flex; align-items: center;'>";
                             echo '
                     <div class="quantity" id="quantity-form-' . $row['product_id'] . '">
-                        <span class="minus" data-product-id="' . $row['product_id'] . '">-</span>
-                        <input a class="quantity-input" type="text" value="' . $row['quantity'] . '" data-product-id="' . $row['product_id'] . '">
                         <span class="plus" data-product-id="' . $row['product_id'] . '">+</span>
+                        <input a class="quantity-input" type="text" value="' . $row['quantity'] . '" data-product-id="' . $row['product_id'] . '">
+                        <span class="minus" data-product-id="' . $row['product_id'] . '">-</span>
                     </div>';
                             echo "<span class='remove-btn' onclick='removeProduct(" . $row['id'] . ")'>Remove</span>";
                             echo "</div>";
@@ -179,10 +179,10 @@ session_start();
                         }
                     }
                 } else {
-                    echo "Your cart is empty.";
+                    echo "<script>location.href='empty-cart.php'</script>";
                 }
             } else {
-                echo "Please log in to view your cart.";
+                echo "<script>location.href='login.php'</script>";
             }
 
             $total = $subtotal - $discount;
