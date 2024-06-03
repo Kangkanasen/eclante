@@ -45,7 +45,7 @@ $user_id = $_SESSION['user_id'];
                     </a>
                 </div>
                 <div class="box">
-                    <a href="#">
+                    <a href="rewards.php">
                         <img src="images/btn3.svg" alt="Image 3">
                         Rewards
                     </a>
@@ -82,8 +82,6 @@ $user_id = $_SESSION['user_id'];
             <hr><br>
             <div class="ordered-products">
                 <?php
-
-
                 // Fetch orders for the logged-in user
                 $sql = "SELECT * FROM `orders` WHERE user_id = ?";
                 $stmt = $conn->prepare($sql);
@@ -122,8 +120,21 @@ $user_id = $_SESSION['user_id'];
                         echo "</div>";
                         echo "</div>";
                         echo "<br><br>";
+
+                        // Calculate estimated delivery date
+                        $estimatedDeliveryDate = date('Y-m-d', strtotime('+3 days', strtotime($order['created_at'])));
+                        $currentDate = date('Y-m-d');
+
+                        // Display estimated delivery or delivered date
                         echo "<div class='delivery-date'>";
-                        echo "Estimate Delivery by " . date('m/d/Y', strtotime('+3 days', strtotime($order['created_at']))); // Assuming delivery takes 3 days
+                        if ($order['status'] === 'cancelled') {
+                            echo "Order has been cancelled";
+                        } elseif ($currentDate < $estimatedDeliveryDate) {
+                            echo "Estimate Delivery by " . date('m/d/Y', strtotime($estimatedDeliveryDate));
+                        } else {
+                            echo "Delivered on " . date('m/d/Y', strtotime($estimatedDeliveryDate));
+                        }
+
                         // Display the download button for each order
                         echo "<form action='invoice.php' method='post'>";
                         echo "<input type='hidden' name='order_id' value='" . $order['id'] . "'>";
@@ -134,7 +145,7 @@ $user_id = $_SESSION['user_id'];
 
                         // Fetch ordered products data
                         $orderId = $order['id'];
-                        $orderedProductsSql = "SELECT op.*, p.name AS product_name, p.image_url FROM `ordered-products` AS op JOIN `products` AS p ON op.product_id = p.id WHERE op.order_id = ?";
+                        $orderedProductsSql = "SELECT op.*, p.name AS product_name, p.image_url, p.mrp, p.offer FROM `ordered-products` AS op JOIN `products` AS p ON op.product_id = p.id WHERE op.order_id = ?";
                         $stmtProducts = $conn->prepare($orderedProductsSql);
                         if ($stmtProducts === false) {
                             die('Prepare failed: ' . htmlspecialchars($conn->error));
@@ -147,12 +158,23 @@ $user_id = $_SESSION['user_id'];
                         if ($orderedProductsResult->num_rows > 0) {
                             // Loop through each ordered product
                             while ($product = $orderedProductsResult->fetch_assoc()) {
+                                $actualPrice = $product['mrp'] * ((100 - $product['offer']) / 100);
+
                                 echo "<div class='display-product'>";
                                 echo "<div class='quantity'>" . $product['quantity'] . "</div>"; // Display quantity
                                 echo "<div class='col1'><img src='images/" . $product['image_url'] . "' alt='an image of your order'></div>";
                                 echo "<div class='col2'>";
                                 echo "<div class='name'>" . $product['product_name'] . "</div>";
-                                echo "<a href='#'>Buy Again</a>";
+
+                                // Display "Buy Again" or "Cancel" button based on the delivery date
+                                if ($order['status'] === 'cancelled') {
+                                    echo "<a href='#' onclick=\"addToCart(" . $product['product_id'] . ", 1, " . $actualPrice . ")\">Buy Again</a>";
+                                } elseif ($currentDate < $estimatedDeliveryDate) {
+                                    echo "<a class='cancel-btn' href='cancel-order.php?order_id=" . $order['id'] . "'>Cancel</a>";
+                                } else {
+                                    echo "<a href='#' onclick=\"addToCart(" . $product['product_id'] . ", 1, " . $actualPrice . ")\">Buy Again</a>";
+                                }
+
                                 echo "</div>";
                                 echo "</div>";
                             }
@@ -164,16 +186,41 @@ $user_id = $_SESSION['user_id'];
                     echo "<div class='no-orders' style='width:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; margin-top:50px;'>";
                     echo "<img src='images/paper-bag.png' alt=''>";
                     echo "You don't have any orders yet";
-                    echo "<a class='start-shopping'; href='shop-now.php'>START SHOPPING</a>";
+                    echo "<a class='start-shopping' href='shop-now.php'>START SHOPPING</a>";
                     echo "</div>";
                 }
 
                 $conn->close();
                 ?>
-
             </div>
+
+
         </section>
     </div>
 </body>
+<script>
+    function addToCart(productId, quantity, price) {
+        console.log("Product ID:", productId);
+        console.log("Quantity:", quantity);
+        console.log("Price:", price);
+
+        $.ajax({
+            type: "POST",
+            url: "add_to_cart.php",
+            data: {
+                productId: productId,
+                productQuantity: quantity,
+                productPrice: price
+            },
+            success: function(data) {
+                alert("Product added to cart!");
+            },
+            error: function(xhr, status, error) {
+                alert("An error occurred while adding the product to cart.");
+                console.log(xhr.responseText);
+            }
+        });
+    }
+</script>
 
 </html>

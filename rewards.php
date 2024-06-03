@@ -30,7 +30,7 @@
                         Orders
                     </a>
                 </div>
-                <div class="box">
+                <div class="box clicked">
                     <a href="rewards.php">
                         <img src="images/btn3.svg" alt="Image 3">
                         Rewards
@@ -48,7 +48,7 @@
                         Change password
                     </a>
                 </div>
-                <div class="box clicked">
+                <div class="box">
                     <a href="faq.php">
                         <img src="images/btn6.svg" alt="Image 6">
                         FAQ
@@ -63,9 +63,10 @@
             </div>
         </div>
         <section class="orders">
-            <h2>FAQ</h2>
+            <h2>Loyalty and Rewards</h2>
             <br>
             <hr><br>
+            <h4>You have no rewards yet</h4>
             
         </section>
     </div>

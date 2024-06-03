@@ -24,25 +24,25 @@ if (isset($_SESSION['user_id'])) {
             if (mysqli_query($conn, $deleteSql)) {
                 // Return success response
                 http_response_code(200);
-                echo "Product removed from cart successfully.";
+                echo json_encode(["message" => "Product removed from cart successfully."]);
             } else {
                 // Return error response
                 http_response_code(500);
-                echo "Error removing product from cart: " . mysqli_error($conn);
+                echo json_encode(["error" => "Error removing product from cart: " . mysqli_error($conn)]);
             }
         } else {
             // Return error response if cart item doesn't belong to the user or doesn't exist
             http_response_code(404);
-            echo "Cart item not found.";
+            echo json_encode(["error" => "Cart item not found."]);
         }
     } else {
         // Return error response if cart item ID is not provided
         http_response_code(400);
-        echo "Cart item ID is required.";
+        echo json_encode(["error" => "Cart item ID is required."]);
     }
 } else {
     // Return error response if user is not logged in
     http_response_code(401);
-    echo "Unauthorized access. Please log in.";
+    echo json_encode(["error" => "Unauthorized access. Please log in."]);
 }
 ?>

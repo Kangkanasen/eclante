@@ -17,10 +17,11 @@ if (isset($_SESSION['user_id'])) {
     $phone = mysqli_real_escape_string($conn, $_POST['phone']);
     $paymentMethod = mysqli_real_escape_string($conn, $_POST['paymentMethod']); // Retrieve payment method
     $total = mysqli_real_escape_string($conn, $_POST['total']);
+    $status = mysqli_real_escape_string($conn, $_POST['status']);
 
     // Insert into orders table
-    $sql = "INSERT INTO `orders`(`name`, `address`, `city`, `state`, `zip`, `phone`, `payment_method`, `created_at`, `user_id`, `total`) 
-            VALUES ('$name', '$address', '$city', '$state', '$zipCode', '$phone', '$paymentMethod', NOW(), '$userId', '$total')";
+    $sql = "INSERT INTO `orders`(`name`, `address`, `city`, `state`, `zip`, `phone`, `payment_method`, `created_at`, `user_id`, `total`,`status`) 
+            VALUES ('$name', '$address', '$city', '$state', '$zipCode', '$phone', '$paymentMethod', NOW(), '$userId', '$total','$status')";
     
     if (mysqli_query($conn, $sql)) {
         // Order inserted successfully
@@ -59,7 +60,7 @@ if (isset($_SESSION['user_id'])) {
         mysqli_query($conn, $sql);
 
         // Redirect to success page or perform any other action
-        header("Location: order-success.php");
+        header("Location: order-placed-successfully.php");
         exit();
     } else {
         // Error inserting order

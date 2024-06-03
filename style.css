@@ -13,6 +13,72 @@
     padding: 3% 8%;
 }
 
+/* favorite button filled */
+.filled svg{
+    fill: #F38BA0;
+}
+.fav-btn{
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: none;
+    background: #e6e5e3;
+    fill: #F38BA0;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+    margin: 0px 10px;
+}
+
+/* notifocation */
+
+
+.notification {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #ebffda;
+    color: #252525;
+    font-family: Inter;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 25px;
+    border: 3px solid #d0fdaa;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
+}
+
+.notification.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 1.5s;
+    animation: fadein 0.5s, fadeout 0.5s 1.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+
 /* main index page or landing page styling starts here */
 /* navbar */
 nav {
@@ -660,6 +726,8 @@ button:hover {
     box-shadow: rgba(226, 196, 63, 0.25) 0px 13px 47px -5px, rgba(180, 71, 71, 0.3) 0px 8px 16px -8px;
 }
 
+
+
 /* .slider-container .card-button:hover {
  border: 1px solid #ffcaa6;
  background-color: #ffcaa6;
@@ -960,6 +1028,26 @@ footer .socials {
     margin-right: 500px;
 }
 
+.all-products h1 span {
+    color: #f38ba0;
+    font-family: "Open Sauce Sans";
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.all-products .remove-btn {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: none;
+    background: #e6e5e3;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+    margin-left: 10px;
+}
+
 .all-products .header {
     display: flex;
     justify-content: space-between;
@@ -983,7 +1071,18 @@ footer .socials {
     }
 
     nav .cart {
-        margin-right: 20px;
+        margin: 0px 20px;
+    }
+
+    .suggestion-item {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    .suggestion-name {
+        padding: 8px 0;
     }
 
     .eclante-logo {
@@ -1273,7 +1372,7 @@ footer .socials {
 
 .login {
     .create {
-        font-family: 'Poppins';
+        font-family:  Open Sauce Sans;
         font-size: 32px;
         margin-bottom: 40px;
         text-align: left;
@@ -1685,6 +1784,12 @@ footer .socials {
         font-weight: normal;
     }
 
+    h4{
+        font-size: 14px;
+        font-family: Inter;
+        font-weight: 300; 
+    }
+
     .box a {
         display: flex;
         align-items: center;
@@ -1782,6 +1887,7 @@ footer .socials {
 
     .col1 img {
         object-fit: cover;
+        height: 100px;
         width: 100%;
         border-radius: 5%;
     }
@@ -1881,6 +1987,12 @@ footer .socials {
         background: none;
         border: none;
         margin-top: 8px;
+    }
+
+    .cancel-btn{
+        background-color: transparent !important;
+        border: 1px solid #ffbcbc;
+        background: none !important;
     }
 
     .hidden {

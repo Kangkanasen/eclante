@@ -1,3 +1,8 @@
+<?php
+session_start();
+include "components/connection.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,6 +64,7 @@
                 ?>
             </div>
         </section>
+        <div id="notification" class="notification">Product added to cart!</div>
     </section>
     <?php
     include "components/footer.php";

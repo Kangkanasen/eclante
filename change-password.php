@@ -1,3 +1,6 @@
+<?php
+session_start(); // Ensure session is started
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,10 +12,10 @@
 <body class="body">
     <?php
     include "components/header.php";
+    
     ?>
 
     <div class="myorders">
-
         <div class="sidenav">
             <h1>username</h1>
             <h2>omuk@gmail.com</h2>
@@ -25,13 +28,13 @@
                     </a>
                 </div>
                 <div class="box">
-                    <a href="#">
+                    <a href="myorders.php">
                         <img src="images/btn2.svg" alt="Image 2">
                         Orders
                     </a>
                 </div>
                 <div class="box">
-                    <a href="#">
+                    <a href="rewards.php">
                         <img src="images/btn3.svg" alt="Image 3">
                         Rewards
                     </a>
@@ -66,7 +69,7 @@
             <h2>Change password</h2>
             <br>
             <hr><br>
-            <form id="password-form" method="post">
+            <form id="password-form" method="post" action="password-changed.php">
                 <label class="label" for="new-password">New password</label>
                 <input type="password" id="new-password" name="new-password" required>
                 <br><br>
@@ -77,34 +80,30 @@
             </form>
         </section>
     </div>
+    <div id="notification" class="notification"></div>
 
     <script>
-        $(document).ready(function() {
-            $('#password-form').on('submit', function(event) {
-                event.preventDefault();
+        document.addEventListener("DOMContentLoaded", function() {
+            var notification = document.getElementById('notification');
+            <?php if (isset($_SESSION['notification'])): ?>
+                notification.innerHTML = "<?php echo $_SESSION['notification']; ?>";
+                notification.classList.add('show');
+                setTimeout(function() {
+                    notification.classList.remove('show');
+                }, 2000); // 2 seconds
+                <?php unset($_SESSION['notification']); ?>
+            <?php endif; ?>
 
-                var newPassword = $('#new-password').val();
-                var confirmPassword = $('#confirm-password').val();
+            var form = document.getElementById('password-form');
+            form.addEventListener('submit', function(event) {
+                var newPassword = document.getElementById('new-password').value;
+                var confirmPassword = document.getElementById('confirm-password').value;
 
                 if (newPassword !== confirmPassword) {
-                    $('#error-message').text('Passwords do not match.').show();
-                    return;
+                    event.preventDefault();
+                    document.getElementById('error-message').textContent = 'Passwords do not match.';
+                    document.getElementById('error-message').style.display = 'flex';
                 }
-
-                $.ajax({
-                    type: 'POST',
-                    url: 'password-changed.php',
-                    data: { 'new-password': newPassword },
-                    success: function(response) {
-                        var data = JSON.parse(response);
-                        if (data.success) {
-                            alert('Password updated successfully.');
-                            window.location.href = 'login.php'; // Redirect to login page
-                        } else {
-                            $('#error-message').text(data.message).show();
-                        }
-                    }
-                });
             });
         });
     </script>

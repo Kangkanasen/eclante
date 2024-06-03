@@ -7,6 +7,7 @@ if (!isset($_SESSION['user_id'])) {
   exit();
 }
 
+
 require 'components/connection.php'; // Database connection
 
 $user_id = $_SESSION['user_id'];
@@ -71,6 +72,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $stmt->execute();
   $stmt->close();
 
+  $_SESSION['notification'] = 'Profile updated successfully';
+
   // Refresh the page to reflect the updated data
   header("Location: " . $_SERVER['PHP_SELF']);
   exit();
@@ -81,6 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <head>
   <link rel="stylesheet" type="text/css" href="style.css?<?php echo filemtime('style.css'); ?>">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body class="body">
@@ -109,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </a>
         </div>
         <div class="box">
-          <a href="#">
+          <a href="rewards.php">
             <img src="images/btn3.svg" alt="Image 3">
             Rewards
           </a>
@@ -197,8 +201,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <br><br>
         <button class="update-btn" type="submit">Update</button>
       </form>
+      <div id="notification" class="notification"></div>
+
     </section>
   </div>
 </body>
-
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  console.log("Document loaded");
+  var notification = document.getElementById('notification');
+  var message = '<?php echo isset($_SESSION['notification']) ? $_SESSION['notification'] : ''; ?>';
+  console.log("Notification message:", message);
+  if (message !== '') {
+    notification.innerHTML = message;
+    notification.classList.add('show'); // Add the 'show' class to make it visible
+    setTimeout(function() {
+      notification.classList.remove('show'); // Remove the 'show' class to hide it
+    }, 2000); // 2 seconds
+  }
+});
+</script>
+<?php unset($_SESSION['notification']); // Reset the session variable after displaying the notification ?>
 </html>
