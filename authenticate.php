@@ -36,23 +36,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['user_id'] = $row['id'];
                 $_SESSION['user_email'] = $row['email'];
 
-                // Redirect to dashboard or another page
-                header("Location: index.php");
+                // Return success response
+                echo json_encode(['success' => true]);
                 exit();
             } else {
                 // User is not verified
-                echo "<script>alert('Your account is not verified. Please verify your email first.')</script>"; 
-                echo "<script>location.href='login.php'</script>"; // Redirect back to login page
+                echo json_encode(['success' => false, 'message' => 'Your account is not verified. Please verify your email first.']);
+                exit();
             }
         } else {
             // Incorrect password
-            echo "<script>alert('Incorrect email or password.')</script>"; 
-            echo "<script>location.href='login.php'</script>"; // Redirect back to login page
+            echo json_encode(['success' => false, 'message' => 'Incorrect email or password.']);
+            exit();
         }
     } else {
         // User does not exist
-        echo "<script>alert('User does not exist.')</script>"; 
-        echo "<script>location.href='login.php'</script>"; // Redirect back to login page
+        echo json_encode(['success' => false, 'message' => 'User does not exist.']);
+        exit();
     }
 
     // Close statement and connection

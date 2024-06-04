@@ -20,7 +20,7 @@ include "product-info-fetch.php";
 
             <section class="product-page-body">
                 <div class="label">
-                    <a href="">home</a>/<a href="">shop</a>/<a href="">Radiance reveal elixir</a>
+                    <a href="index.php">home</a>/<a href="shop-now.php">shop</a>/<a href=""><?php echo $name; ?></a>
                 </div>
                 <div class="product">
                     <div class="all-imgs">

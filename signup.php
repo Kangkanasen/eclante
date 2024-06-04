@@ -14,7 +14,7 @@
                 <label class="label" for="Password">Create Password</label>
                 <input type="text" name="password" placeholder="Create a password" required>
                 <div style="display: flex; gap: 6px;">
-                    <input class="checkbox" type="checkbox" style="height: 10px; width: 10px; margin-top: 2px;">
+                    <input class="checkbox" type="checkbox" style="height: 10px; width: 10px; margin-top: 2px;" required>
                     <p>I agree to the terms & policy</p>
                 </div>
                 <button type="submit" name="register">Signup</button>

@@ -197,6 +197,9 @@ $user_id = $_SESSION['user_id'];
 
         </section>
     </div>
+    <?php
+    include "components/footer.php"
+    ?>
 </body>
 <script>
     function addToCart(productId, quantity, price) {

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <body class="index">
     <section class="body">
         <?php

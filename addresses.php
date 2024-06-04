@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 require 'components/connection.php'; // Database connection
 
 // Check if user is logged in
@@ -21,6 +22,16 @@ while ($stmt->fetch()) {
     $addresses[] = ['id' => $id, 'name' => $name, 'address' => $address, 'city' => $city, 'state' => $state, 'zip' => $zip, 'phone' => $phone, 'is_default' => $is_default];
 }
 $stmt->close();
+
+// Find and store the default address in session variable
+$defaultAddress = null;
+foreach ($addresses as $address) {
+    if ($address['is_default']) {
+        $defaultAddress = $address;
+        break;
+    }
+}
+$_SESSION['default_address'] = $defaultAddress;
 ?>
 
 <!DOCTYPE html>

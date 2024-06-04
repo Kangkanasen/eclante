@@ -75,7 +75,7 @@ $rows = ceil($result->num_rows / $columns);
                     echo '<div class="card-footer">';
                     echo '<span class="text-title">₹ ' . number_format($actual_price, 2) . '</span>'; // Display actual price
                     echo '</a>';
-                    echo '<div>';
+                    echo '<div style="display:flex; gap:2px; margin-right:2px;">';
                     echo '<button class="card-button" onclick="addToCart(' . $row['id'] . ', 1, ' . $actual_price . ')">';
                     echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">';
                     echo '<path d="M7.72461 7.67001V6.70001C7.72461 4.45001 9.53461 2.24001 11.7846 2.03001C14.4646 1.77001 16.7246 3.88001 16.7246 6.51001V7.89001" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>';

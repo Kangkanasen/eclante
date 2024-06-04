@@ -1,7 +1,6 @@
 <?php
 include "components/connection.php";
 
-
 // Fetch products from the database
 $sql = "SELECT * FROM products";
 $result = $conn->query($sql);
@@ -12,6 +11,10 @@ $searchTerm = isset($_GET['q']) ? $_GET['q'] : '';
 $columns = 3;
 $rows = ceil($result->num_rows / $columns);
 
+// Check if user is logged in
+$isLoggedIn = isset($_SESSION['user_id']) ? true : false;
+$user_id = $isLoggedIn ? $_SESSION['user_id'] : 0;
+
 // Display products in a grid
 echo '<div style="display: grid; grid-template-columns: repeat(' . $columns . ', 1fr); row-gap: 40px;">';
 
@@ -19,17 +22,19 @@ while ($row = $result->fetch_assoc()) {
     // Initialize $isFavorite for each product
     $isFavorite = false;
 
-    // Prepare SQL statement to check if the product is in favorites for the current user
-    $check_favorite_sql = "SELECT * FROM favorites WHERE user_id = ? AND product_id = ?";
-    $stmt_favorite = $conn->prepare($check_favorite_sql);
-    $stmt_favorite->bind_param("ii", $user_id, $row['id']);
-    // Execute the prepared statement
-    $stmt_favorite->execute();
-    $result_favorite = $stmt_favorite->get_result();
+    if ($isLoggedIn) {
+        // Prepare SQL statement to check if the product is in favorites for the current user
+        $check_favorite_sql = "SELECT * FROM favorites WHERE user_id = ? AND product_id = ?";
+        $stmt_favorite = $conn->prepare($check_favorite_sql);
+        $stmt_favorite->bind_param("ii", $user_id, $row['id']);
+        // Execute the prepared statement
+        $stmt_favorite->execute();
+        $result_favorite = $stmt_favorite->get_result();
 
-    // If the product is in favorites, set $isFavorite to true
-    if ($result_favorite->num_rows > 0) {
-        $isFavorite = true;
+        // If the product is in favorites, set $isFavorite to true
+        if ($result_favorite->num_rows > 0) {
+            $isFavorite = true;
+        }
     }
 
     // Calculate actual price after applying offer
@@ -47,7 +52,7 @@ while ($row = $result->fetch_assoc()) {
     echo '<div class="card-footer">';
     echo '<span class="text-title">₹ ' . number_format($actual_price, 2) . '</span>'; // Display actual price
     echo '</a>';
-    echo '<div>';
+    echo '<div style="display:flex; gap:2px; margin-right:2px;">';
     // Inside the while loop where you display products
     echo '<button class="fav-btn' . ($isFavorite ? ' filled' : '') . '" onclick="addToFavorites(' . $row['id'] . ', ' . $user_id . ', this)"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M11.5685 19.076C11.2568 19.186 10.7435 19.186 10.4318 19.076C7.7735 18.1685 1.8335 14.3826 1.8335 7.96596C1.8335 5.13346 4.116 2.8418 6.93016 2.8418C8.5985 2.8418 10.0743 3.64846 11.0002 4.89513C11.926 3.64846 13.411 2.8418 15.0702 2.8418C17.8843 2.8418 20.1668 5.13346 20.1668 7.96596C20.1668 14.3826 14.2268 18.1685 11.5685 19.076Z" stroke="#F38BA0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -72,39 +77,8 @@ echo '</div>';
 $conn->close();
 ?>
 
+
 <script>
-            function showNotification(message) {
-            var notification = document.getElementById("notification");
-            notification.innerText = message;
-            notification.className = "notification show";
-            setTimeout(function() {
-                notification.className = notification.className.replace(" show", "");
-            }, 2000);
-        }
-
-    function addToCart(productId, quantity, price) {
-        console.log("Product ID:", productId);
-        console.log("Quantity:", quantity);
-        console.log("Price:", price);
-
-        $.ajax({
-            type: "POST",
-            url: "add_to_cart.php",
-            data: {
-                productId: productId,
-                productQuantity: quantity,
-                productPrice: price
-            },
-            success: function(data) {
-                showNotification("Product added to cart!");
-            },
-            error: function(xhr, status, error) {
-                showNotification("An error occurred while adding the product to cart.");
-                console.log(xhr.responseText);
-            }
-        });
-    }
-
 
     $('.fav-btn').each(function(index, element) {
         var productId = $(this).data('product-id');
@@ -129,34 +103,77 @@ $conn->close();
         });
     });
 
-    function addToFavorites(productId, element) {
-    $.ajax({
-        type: "POST",
-        url: "add_to_favorites.php",
-        data: {
-            productId: productId
-        },
-        success: function(data) {
-            if (data.trim() === "Please log in first.") {
-                alert(data);
-                window.location.href = "login.php"; // Redirect to login page if not logged in
-            } else if (data.trim() === "Product added to favorites!") {
-                var favButton = $(element);
-                favButton.addClass('filled'); // Add filled class to the favorite button
-                showNotification("Product added to favorites!"); // Display notification
-                // Reload the page to display the filled color
-                setTimeout(function() {
-                    location.reload();
-                }, 1000); 
-            } else {
-                showNotification(data.trim()); // Display other response messages
-            }
-        },
-        error: function(xhr, status, error) {
-            showNotification("An error occurred while adding the product to favorites.");
-            console.log(xhr.responseText);
-        }
-    });
-}
+    function showNotification(message) {
+        var notification = document.getElementById("notification");
+        notification.innerText = message;
+        notification.className = "notification show";
+        setTimeout(function() {
+            notification.className = notification.className.replace(" show", "");
+        }, 2000);
+    }
 
+    function addToCart(productId, quantity, price) {
+        // Check if user is logged in
+        <?php if (!$isLoggedIn) { ?>
+            window.location.href = "login.php";
+            return;
+        <?php } ?>
+
+        console.log("Product ID:", productId);
+        console.log("Quantity:", quantity);
+        console.log("Price:", price);
+
+        $.ajax({
+            type: "POST",
+            url: "add_to_cart.php",
+            data: {
+                productId: productId,
+                productQuantity: quantity,
+                productPrice: price
+            },
+            success: function(data) {
+                showNotification("Product added to cart!");
+            },
+            error: function(xhr, status, error) {
+                showNotification("An error occurred while adding the product to cart.");
+                console.log(xhr.responseText);
+            }
+        });
+    }
+
+    function addToFavorites(productId, element) {
+        // Check if user is logged in
+        <?php if (!$isLoggedIn) { ?>
+            window.location.href = "login.php";
+            return;
+        <?php } ?>
+
+        $.ajax({
+            type: "POST",
+            url: "add_to_favorites.php",
+            data: {
+                productId: productId
+            },
+            success: function(data) {
+                if (data.trim() === "Please log in first.") {
+                    alert(data);
+                    window.location.href = "login.php"; // Redirect to login page if not logged in
+                } else if (data.trim() === "Product added to favorites!") {
+                    var favButton = $(element);
+                    favButton.addClass('filled'); // Add filled class to the favorite button
+                    showNotification("Product added to favorites!"); // Display notification
+                    // Reload the page to display the filled color
+                    setTimeout(function() {
+                        location.reload();
+                    }, 1000);
+                } else {
+                    showNotification(data.trim()); // Display other response messages
+                }
+            },
+            error: function(xhr, status, error) {
+                showNotification("An error occurred while adding the product to favorites.");
+                console.log(xhr.responseText);
+            }
+        });
+    }
 </script>

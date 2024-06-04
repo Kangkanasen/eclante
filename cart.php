@@ -1,11 +1,17 @@
 <?php
 session_start();
+
+// Check if the default address is set in the session
+if (isset($_SESSION['default_address'])) {
+    $defaultAddress = $_SESSION['default_address'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <link rel="stylesheet" type="text/css" href="style.css?<?php echo filemtime('style.css'); ?>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <form class="info cart-page" action="ordered.php" method="post">
 
@@ -42,53 +48,63 @@ session_start();
             </div>
 
             <label class="label" for="delivery">Delivery</label>
-            <!-- <select name="country" id="country">
-                <option value="india">India</option>
-                <option value="united states">United States</option>
-                <option value="japan">Japan</option>
-            </select> -->
-            <input class="input-info" type="text" name="name" placeholder="Name" required>
-            <input class="input-info" type="text" name="address" placeholder="Address" required>
+            <input class="input-info" type="text" name="name" placeholder="Name" required value="<?php echo isset($defaultAddress['name']) ? $defaultAddress['name'] : ''; ?>">
+            <input class="input-info" type="text" name="address" placeholder="Address" required value="<?php echo isset($defaultAddress['address']) ? $defaultAddress['address'] : ''; ?>">
             <div style="width:90%; display: flex; justify-content: space-between;">
-                <input class="smallinput" type="text" name="city" id="cityInput" placeholder="City" required>
+                <input class="smallinput" type="text" name="city" id="cityInput" placeholder="City" required value="<?php echo isset($defaultAddress['city']) ? $defaultAddress['city'] : ''; ?>">
                 <select class="smallinput" id="stateSelect" name="state" placeholder="State" required>
-                    <option value="Andhra Pradesh">Andhra Pradesh</option>
-                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                    <option value="Assam">Assam</option>
-                    <option value="Bihar">Bihar</option>
-                    <option value="Chhattisgarh">Chhattisgarh</option>
-                    <option value="Goa">Goa</option>
-                    <option value="Gujarat">Gujarat</option>
-                    <option value="Haryana">Haryana</option>
-                    <option value="Himachal Pradesh">Himachal Pradesh</option>
-                    <option value="Jharkhand">Jharkhand</option>
-                    <option value="Karnataka">Karnataka</option>
-                    <option value="Kerala">Kerala</option>
-                    <option value="Madhya Pradesh">Madhya Pradesh</option>
-                    <option value="Maharashtra">Maharashtra</option>
-                    <option value="Manipur">Manipur</option>
-                    <option value="Meghalaya">Meghalaya</option>
-                    <option value="Mizoram">Mizoram</option>
-                    <option value="Nagaland">Nagaland</option>
-                    <option value="Odisha">Odisha</option>
-                    <option value="Punjab">Punjab</option>
-                    <option value="Rajasthan">Rajasthan</option>
-                    <option value="Sikkim">Sikkim</option>
-                    <option value="Tamil Nadu">Tamil Nadu</option>
-                    <option value="Telangana">Telangana</option>
-                    <option value="Tripura">Tripura</option>
-                    <option value="Uttar Pradesh">Uttar Pradesh</option>
-                    <option value="Uttarakhand">Uttarakhand</option>
-                    <option value="West Bengal">West Bengal</option>
-                    <option value="Chandigarh">Chandigarh</option>
-                    <option value="Delhi">Delhi</option>
-                    <option value="Puducherry">Puducherry</option>
-                </select>
-                <input name="zip_code" class="smallinput" type="text" id="zipCodeInput" placeholder="Zip Code" required oninput="getCityName()" required>
+                    <!-- Options for states -->
+                    <?php
+                    $states = array(
+                        "Andhra Pradesh",
+                        "Arunachal Pradesh",
+                        "Assam",
+                        "Bihar",
+                        "Chhattisgarh",
+                        "Goa",
+                        "Gujarat",
+                        "Haryana",
+                        "Himachal Pradesh",
+                        "Jharkhand",
+                        "Karnataka",
+                        "Kerala",
+                        "Madhya Pradesh",
+                        "Maharashtra",
+                        "Manipur",
+                        "Meghalaya",
+                        "Mizoram",
+                        "Nagaland",
+                        "Odisha",
+                        "Punjab",
+                        "Rajasthan",
+                        "Sikkim",
+                        "Tamil Nadu",
+                        "Telangana",
+                        "Tripura",
+                        "Uttar Pradesh",
+                        "Uttarakhand",
+                        "West Bengal",
+                        "Chandigarh",
+                        "Delhi",
+                        "Puducherry"
+                    );
 
+                    foreach ($states as $state) {
+                        $selected = isset($defaultAddress['state']) && $defaultAddress['state'] == $state ? 'selected' : '';
+                        echo "<option value=\"$state\" $selected>$state</option>";
+                    }
+                    ?>
+
+                </select>
+                <input name="zip_code" class="smallinput" type="text" id="zipCodeInput" placeholder="Zip Code" required oninput="getCityName()" value="<?php echo isset($defaultAddress['zip']) ? $defaultAddress['zip'] : ''; ?>">
             </div>
 
-            <input class="input-info" type="text" name="phone" placeholder="Phone">
+            <input class="input-info" type="text" name="phone" value="<?php echo isset($defaultAddress['phone']) ? $defaultAddress['phone'] : ''; ?>" placeholder="Phone">
+
+            <!-- change address btn -->
+            <div style="display:flex; justify-content:flex-end; width: 90%; ">
+                <a href="addresses.php" class="change-btn"><i class="fa-solid fa-pen fa-xs" style="color: #f38ba0;"></i>Change Address</a>
+            </div>
 
             <label class="label" for="payment">Payment</label>
             <p style="margin: 6px 0px;">All transactions are secure and encrypted.</p>
@@ -209,8 +225,8 @@ session_start();
     </div>
     <input type="hidden" name="status" value="pending">
 
-     <!-- Add the notification div -->
-     <div id="notification" class="notification">Product added to cart!</div>
+    <!-- Add the notification div -->
+    <div id="notification" class="notification">Product added to cart!</div>
 </form>
 <?php
 include "components/footer.php";

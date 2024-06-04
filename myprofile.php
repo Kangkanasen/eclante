@@ -168,7 +168,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <br>
         <label for="fullname">Full Name</label>
         <input name="fullname" type="text" value="<?php echo htmlspecialchars($fullname); ?>"><br><br>
-        <div style="display: flex; width: 90%;">
+        <div style="display: flex; width: 100%;">
           <div style="display: flex; flex-direction: column; width: 50%;">
             <label for="dob">Date of Birth</label>
             <input name="dob" type="date" value="<?php echo htmlspecialchars($dob); ?>">
@@ -188,7 +188,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <br>
         <hr>
         <br>
-        <div style="display: flex; width: 90%;">
+        <div style="display: flex; width: 100%;">
           <div style="display: flex; flex-direction: column; width: 50%;">
             <label for="email">Email</label>
             <input type="email" name="email" value="<?php echo htmlspecialchars($email); ?>">
@@ -205,7 +205,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     </section>
   </div>
+  
 </body>
+
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   console.log("Document loaded");
@@ -223,3 +225,6 @@ document.addEventListener("DOMContentLoaded", function() {
 </script>
 <?php unset($_SESSION['notification']); // Reset the session variable after displaying the notification ?>
 </html>
+<?php
+    include "components/footer.php"
+    ?>
