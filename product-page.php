@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "product-info-fetch.php";
 ?>
 <!DOCTYPE html>
@@ -47,16 +48,16 @@ include "product-info-fetch.php";
                     </div>
                     <div class="product-details">
                         <h2 class="product-name"><?php echo $name; ?></h2><br><br>
-                        <p class="quantity">50ml (1.69 fl.oz)</p>
+                        <p class="quantity">50ml (1.69 fl.oz)</p><br>
                         <!-- fix display review number with star -->
-                        <div class="ratings">
+                        <!-- <div class="ratings">
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star"></span>
                             <span class="fa fa-star"></span>
                             <p class="reviews-num">36 reviews</p>
-                        </div>
+                        </div> -->
                         <div class="price">
                             <h3 class="recent-price">₹<?php echo $actual_price; ?></h3>
                             <h3 class="mrp">₹<?php echo $mrp; ?></h3>

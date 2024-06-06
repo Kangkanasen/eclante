@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
-<body class="body">
+<body>
+    <div class="body">
     <?php
     include "components/header.php";
     ?>
@@ -69,9 +70,10 @@
             
         </section>
     </div>
-
-</body>
-<?php
+    </div>
+    <?php
     include "components/footer.php"
     ?>
+</body>
+
 </html>

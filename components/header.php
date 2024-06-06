@@ -114,7 +114,7 @@ if (isset($_SESSION['user_id'])) {
                 <h4>Popular Searches</h4>
                 <ul>
                     <a href="shop-now.php" class="static-suggestion">Shop</a>
-                    <a href="#" class="static-suggestion">Duo</a>
+                    <a href="search-results.php?q=duo" class="static-suggestion">Duo</a>
                     <a href="search-results.php?q=radiance" class="static-suggestion">Radiance</a>
                     <a href="search-results.php?q=brilliance" class="static-suggestion">Brilliance</a>
                 </ul>

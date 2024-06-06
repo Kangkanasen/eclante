@@ -10,31 +10,33 @@ session_start();
         <!-- hero section -->
         <section class="hero">
             <div class="row1" id="">
+                <a href="product-page.php?id=8">
                 <div class="card">
                     <img class="bg-img" src="images/Outdoor-Cosmetics-Branding-Mockup-vol2 1.png" alt="">
                     <div class="background">
 
                     </div>
                     <div class="logo">
-                        Duo Offer <br> ₹1499
+                        Duo Offer <br> ₹978
                     </div>
 
-                    <a href="##"><img src="images/hero-product1.png" alt="" class="box box2"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                    <a href="product-page.php?id=1"><img src="images/hero-product1.png" alt="" class="box box2"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                                 <path d="M17.3828 3.32031C15.332 3.32031 13.5488 4.24512 12.5 5.79492C11.4512 4.24512 9.66797 3.32031 7.61719 3.32031C6.06374 3.32212 4.57444 3.94003 3.47598 5.03848C2.37753 6.13694 1.75962 7.62624 1.75781 9.17969C1.75781 12.0312 3.53516 14.999 7.04102 17.999C8.64751 19.3679 10.3828 20.578 12.2227 21.6123C12.3079 21.6581 12.4032 21.6821 12.5 21.6821C12.5968 21.6821 12.6921 21.6581 12.7773 21.6123C14.6172 20.578 16.3525 19.3679 17.959 17.999C21.4648 14.999 23.2422 12.0312 23.2422 9.17969C23.2404 7.62624 22.6225 6.13694 21.524 5.03848C20.4256 3.94003 18.9363 3.32212 17.3828 3.32031ZM12.5 20.4209C10.8975 19.4961 2.92969 14.6211 2.92969 9.17969C2.93098 7.93688 3.42526 6.74535 4.30405 5.86655C5.18285 4.98776 6.37438 4.49348 7.61719 4.49219C9.59766 4.49219 11.2607 5.5498 11.958 7.25293C12.0022 7.3604 12.0772 7.45231 12.1738 7.517C12.2703 7.58169 12.3838 7.61623 12.5 7.61623C12.6162 7.61623 12.7297 7.58169 12.8262 7.517C12.9228 7.45231 12.9978 7.3604 13.042 7.25293C13.7393 5.5498 15.4023 4.49219 17.3828 4.49219C18.6256 4.49348 19.8172 4.98776 20.6959 5.86655C21.5747 6.74535 22.069 7.93688 22.0703 9.17969C22.0703 14.6211 14.1025 19.4961 12.5 20.4209Z" fill="white" />
                             </svg></span></a>
 
-                    <a href="###"><img src="images/hero-product2.png" class="box box3"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                    <a href="product-page.php?id=4"><img src="images/hero-product2.png" class="box box3"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                                 <path d="M17.3828 3.32031C15.332 3.32031 13.5488 4.24512 12.5 5.79492C11.4512 4.24512 9.66797 3.32031 7.61719 3.32031C6.06374 3.32212 4.57444 3.94003 3.47598 5.03848C2.37753 6.13694 1.75962 7.62624 1.75781 9.17969C1.75781 12.0312 3.53516 14.999 7.04102 17.999C8.64751 19.3679 10.3828 20.578 12.2227 21.6123C12.3079 21.6581 12.4032 21.6821 12.5 21.6821C12.5968 21.6821 12.6921 21.6581 12.7773 21.6123C14.6172 20.578 16.3525 19.3679 17.959 17.999C21.4648 14.999 23.2422 12.0312 23.2422 9.17969C23.2404 7.62624 22.6225 6.13694 21.524 5.03848C20.4256 3.94003 18.9363 3.32212 17.3828 3.32031ZM12.5 20.4209C10.8975 19.4961 2.92969 14.6211 2.92969 9.17969C2.93098 7.93688 3.42526 6.74535 4.30405 5.86655C5.18285 4.98776 6.37438 4.49348 7.61719 4.49219C9.59766 4.49219 11.2607 5.5498 11.958 7.25293C12.0022 7.3604 12.0772 7.45231 12.1738 7.517C12.2703 7.58169 12.3838 7.61623 12.5 7.61623C12.6162 7.61623 12.7297 7.58169 12.8262 7.517C12.9228 7.45231 12.9978 7.3604 13.042 7.25293C13.7393 5.5498 15.4023 4.49219 17.3828 4.49219C18.6256 4.49348 19.8172 4.98776 20.6959 5.86655C21.5747 6.74535 22.069 7.93688 22.0703 9.17969C22.0703 14.6211 14.1025 19.4961 12.5 20.4209Z" fill="white" />
                             </svg></span></a>
 
-                    <a href="cart.html" class="box box4"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+                    <a href="#" onclick="addToCart(8, 1, ' . $actual_price . ')" class="box box4"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                             <path d="M7.72461 7.67001V6.70001C7.72461 4.45001 9.53461 2.24001 11.7846 2.03001C14.4646 1.77001 16.7246 3.88001 16.7246 6.51001V7.89001" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                             <path d="M9.22444 22H15.2244C19.2444 22 19.9644 20.39 20.1744 18.43L20.9244 12.43C21.1944 9.99 20.4944 8 16.2244 8H8.22444C3.95444 8 3.25444 9.99 3.52444 12.43L4.27444 18.43C4.48444 20.39 5.20444 22 9.22444 22Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                             <path d="M15.7201 12H15.7291" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                             <path d="M8.71912 12H8.7281" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg></a>
-                </div> <!-- image number one -->
+                </div> </a><!-- image number one -->
             </div>
+            <div id="notification" class="notification">Product added to cart!</div>
             <div class="row2">
                 <div class="row-img">
                     <img class="girl-face-cream" src="images/AdobeStock-07XsvRKa4G 1.png" alt=""> <!-- image number two -->
@@ -122,4 +124,44 @@ session_start();
     <?php
     include "components/footer.php"
     ?>
+
+    <script>
+            function showNotification(message) {
+        var notification = document.getElementById("notification");
+        notification.innerText = message;
+        notification.className = "notification show";
+        setTimeout(function() {
+            notification.className = notification.className.replace(" show", "");
+        }, 2000);
+    }
+
+            function addToCart(productId, quantity, price) {
+        // Check if user is logged in
+        <?php if (!$isLoggedIn) { ?>
+            window.location.href = "login.php";
+            return;
+        <?php } ?>
+
+        console.log("Product ID:", productId);
+        console.log("Quantity:", quantity);
+        console.log("Price:", price);
+
+        $.ajax({
+            type: "POST",
+            url: "add_to_cart.php",
+            data: {
+                productId: productId,
+                productQuantity: quantity,
+                productPrice: price
+            },
+            success: function(data) {
+                showNotification("Product added to cart!");
+            },
+            error: function(xhr, status, error) {
+                showNotification("An error occurred while adding the product to cart.");
+                console.log(xhr.responseText);
+            }
+        });
+    }
+    </script>
 </body>
